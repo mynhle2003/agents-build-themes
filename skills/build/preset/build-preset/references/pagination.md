@@ -1,0 +1,7 @@
+# Pagination visibility and spacing
+
+
+- Compare pagination visibility separately in the desktop and mobile references. If desktop pagination is absent in Figma, hide it through an existing desktop-specific control when available; do not enable it merely because mobile has a progress bar.
+- Inspect the control's Liquid and responsive behavior before changing it. A setting named `show_pagination_on_desktop` may gate pagination markup for both viewports. If hiding desktop pagination also removes the required mobile pagination, preserve the useful mobile composition and report the missing independent visibility control as a configuration gap.
+- For this repository's presets, keep pagination desktop top padding greater than mobile top padding, including when desktop pagination is hidden. Normally use `48px` on desktop, matching Collection tabs, and the measured mobile spacing (for example, `36px`). Do not set desktop padding to `0` just because desktop pagination is absent. If the mobile value is `48px` or greater, choose a larger desktop value allowed by the schema. Explicit user instructions or clearly measured visible Figma spacing take precedence over this repository convention.
+- Pagination visibility and its stored padding are separate decisions. Keep the same pagination layout and spacing in the section preset and its target template unless the user requests a difference. Verify the resulting desktop/mobile visibility and spacing in preview; report any remaining mismatch without adding custom code.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Theme Style Guide"
+  short_description: "Ánh xạ style guide vào Theme Settings hiện có."
+  default_prompt: "Dùng $theme-style-guide để ánh xạ style guide Figma vào Theme Settings hiện có, giữ nguyên composition ngoài phạm vi."

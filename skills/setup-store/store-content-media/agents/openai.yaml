@@ -1,0 +1,4 @@
+interface:
+  display_name: "Store Content & Media"
+  short_description: "Tạo và cập nhật product, content, ảnh và video."
+  default_prompt: "Dùng $store-content-media để tạo hoặc cập nhật product, collection, blog và media trong store đích đã xác định."

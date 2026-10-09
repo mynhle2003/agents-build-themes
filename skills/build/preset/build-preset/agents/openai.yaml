@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Preset"
+  short_description: "Cấu hình preset từ section và block có sẵn."
+  default_prompt: "Dùng $build-preset để cấu hình preset từ Figma bằng section và block hiện có, rồi báo các chênh lệch còn lại."
