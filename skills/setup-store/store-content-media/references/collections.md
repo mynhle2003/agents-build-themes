@@ -1,5 +1,12 @@
 # 3. Collection
 
+### Tái sử dụng hoặc tạo collection theo Figma
+
+- Khi người dùng yêu cầu setup store/bổ sung catalog để khớp Figma, audit collection hiện có bằng ID, handle, title, ảnh, membership và thứ tự sản phẩm trước khi tạo.
+- Nếu không có collection tương ứng với nhóm sản phẩm trong Figma, được phép tạo collection mới trên store đích đã xác định trong phạm vi yêu cầu đó; không cần hỏi lại chỉ vì collection chưa tồn tại. Dùng manual collection khi thiết kế chọn một nhóm sản phẩm cụ thể, gắn ảnh đúng nguồn và sắp thứ tự sản phẩm theo Figma.
+- Tái sử dụng collection tương ứng nếu có; không đổi membership/thứ tự của collection dùng chung cho theme khác chỉ để khớp một section. Nếu collection dùng chung không phù hợp và thay đổi sẽ ảnh hưởng theme khác, tạo collection riêng theo template trong phạm vi setup đã được yêu cầu.
+- Audit chỉ đọc vẫn không cho phép tạo collection. Thiếu store đích hoặc nguồn sản phẩm/ảnh bắt buộc thì báo phần thiếu, không tự dùng store của profile minh họa. Tạo collection không bao gồm quyền push/publish theme.
+
 
 ### Tên, nội dung và ảnh
 
