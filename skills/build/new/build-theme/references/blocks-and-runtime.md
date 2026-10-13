@@ -2,7 +2,7 @@
 
 ## Block slots and runtime lifecycle
 
-Define each slot before rendering it: purpose, allowed block types from the Block Registry, min/max capacity, default order, nesting depth, app-block policy, and empty/fallback state. Do not open every block type to every section, and do not use literal block IDs as runtime logic.
+Define each slot before rendering it: purpose, allowed block types from the Block Registry, min/max capacity, default order, nesting depth, app-block policy, and empty/fallback state. Sections whose resolved section or preset name contains `(custom)` use `@theme` at the root per [Section Contract](section-contract.md#sections-named-custom); other slots retain their allow-lists. Do not use literal block IDs as runtime logic.
 
 Render blocks in Shopify's configured order and keep `block.shopify_attributes` on each block root. Handle removed defaults, missing resource data, unavailable content, and app removal with a safe empty state.
 

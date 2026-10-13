@@ -16,6 +16,13 @@ Ownership follows this rule: the section owns external spacing, parent grid/colu
 
 ## Section schema and placement contract
 
+### Sections named `(custom)`
+
+- When the resolved section name or any preset name contains `(custom)`, the section must accept all public theme blocks with `"blocks": [{ "type": "@theme" }]` and render merchant-managed children through `{% content_for 'blocks' %}`. Do not restrict these sections to an explicit public-block allow-list.
+- Preserve existing `@app` support and any explicitly required private (`_`-prefixed) blocks. `@theme` does not expose private blocks. This rule applies to the section root; nested blocks retain their own child contracts, capacity, and required data context.
+- Keep existing presets, saved block IDs/order, settings and placement guards. A `(custom)` preset label opens its owning section; changing the label alone does not configure block support.
+- Audit the resolved schema/preset names and verify the root picker after save/reload. Reference: [Shopify theme block targeting](https://shopify.dev/docs/storefronts/themes/architecture/blocks/theme-blocks/targeting).
+
 Choose placement before schema or markup:
 
 - A **dynamic content section** belongs in a JSON template, has a meaningful preset, and may be addable, removable, and reorderable within its surface.

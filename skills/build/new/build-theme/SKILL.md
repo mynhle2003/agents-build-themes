@@ -30,6 +30,8 @@ Every decision must have one owner. A section must not invent a data context, co
 ## Đọc theo phần đang xây
 
 - Theme Settings, token, shared CSS: [Foundation](references/foundation.md).
+- Icon Figma và SVG trong snippet: [Quy tắc icon](references/foundation.md#icon-figma-và-svg).
+- Ghi doc hoặc cập nhật giữa các theme biến thể: [Variant updates](references/variant-updates.md).
 - Section, placement, schema, DOM và quyền sở hữu: [Section contract](references/section-contract.md).
 - Kernel/compound block, alignment và JavaScript/editor lifecycle: [Blocks and runtime](references/blocks-and-runtime.md).
 

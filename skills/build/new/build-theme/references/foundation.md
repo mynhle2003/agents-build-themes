@@ -77,3 +77,11 @@ The section controls the parent context; the block controls its content role; th
 - Radius controls use the shared preset vocabulary. Do not switch one component to a numeric range unless the contract explicitly requires it.
 - Keep the current badge scope: do not reintroduce the removed generic status-color group; collection badges and custom product-card tags are separate concerns.
 - Button Tertiary remains the third button level and follows its own label/hover-label contract; do not add unrelated outline/subtle naming.
+
+## Icon Figma và SVG
+
+- Không tạo hoặc lưu SVG icon vào theme `assets/`; không tham chiếu URL Figma tạm trong theme. SVG icon được render từ snippet icon của repo.
+- Kiểm tra snippet icon hiện có và các consumer trước. Nếu đã có icon khớp Figma, dùng lại đúng icon/snippet, giữ kích thước và màu theo contract hiện tại.
+- Nếu chưa có bản khớp, tìm icon tương tự không được dùng trong Figma và kiểm tra callsite/preset trước khi thay bằng SVG đúng thiết kế trong snippet. Không thay một icon đang được dùng hoặc làm thay đổi consumer khác; khi không có ứng viên an toàn, bổ sung icon vào snippet hiện có.
+- Render qua lựa chọn icon/style trong schema nếu có; không ép icon hay layout bằng CSS bất kể option. Giữ `currentColor`, kích thước/viewBox, accessibility và contract snippet; cập nhật option liên quan chỉ trong phạm vi được yêu cầu.
+- Nếu đã thêm SVG icon vào `assets/` trong tác vụ hiện tại, chuyển consumer về snippet và xóa đúng file vừa thêm. Không xóa asset có sẵn hoặc thay đổi không liên quan.
