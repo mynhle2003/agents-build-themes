@@ -12,6 +12,8 @@
 
 ## Quy tắc chung
 
+Các yêu cầu build, rebuild, custom, fix, tối ưu hoặc cập nhật giao diện, **ngoại trừ build preset**, đều áp dụng [Ưu tiên option trước CSS custom](../../skills/build/new/build-theme/references/foundation.md#ưu-tiên-option-trước-css-custom). Khi ghép mẫu vào repo theme, trỏ link đến `.agents/skills/build-theme/references/foundation.md` hoặc vị trí skill thực tế. Đọc option trước, điều chỉnh range hợp lệ khi cần, rồi mới xử lý CSS custom cho phần không có option.
+
 Giữ thay đổi người dùng, inspect diff trước sửa. Phân biệt implementation và cấu hình preset/template theo policy repo. Ghi customization khi sửa code đặc thù. Không suy ra store ghi dữ liệu từ theme tham khảo; xác minh domain và ID đích. Không ghi credential vào code hoặc receipt.
 
 Theo branch/delivery policy repo đích. Chạy git diff --check và Shopify Theme Check cho code/schema/config trước delivery. Chỉ commit/push/publish trong phạm vi người dùng yêu cầu hoặc workflow đã cho phép. Không dùng force-push/reset hard để đồng bộ.

@@ -10,7 +10,7 @@
 | Giá | Có giá gốc và giá khuyến mãi. |
 | Tồn kho | Số lượng trung bình 20; không lấy mặc định 100 từ receipt cũ. |
 | Summary | Có metafield summary. |
-| Tag | Có `New` hoặc `Bestseller`. |
+| Tag | Chỉ gắn tag của đúng sản phẩm trong Figma, giữ nguyên nội dung; không tự thêm tag. |
 | Variant | Bắt buộc có `Color`, dùng dữ liệu màu liên kết metafield. Chuẩn hóa option về `Color` và `Size` khi có kích thước thực tế. |
 
 ### Tên và phân loại
@@ -18,7 +18,11 @@
 - Title giữ tên sản phẩm trong thiết kế, không thêm tên template phía sau theo quy trình template hiện có.
 - Sản phẩm mới dùng handle `<template-slug>-<product-slug>`, ví dụ `perky-rocking-horse`. Không đổi handle tài nguyên đã có nếu không cần thiết.
 - Chọn product category đúng loại sản phẩm; mô tả và collection membership phải phù hợp với category.
-- Gắn ít nhất một tag `New` hoặc `Bestseller` theo vị trí thiết kế. Nếu thiết kế không chỉ định, dùng `New` cho sản phẩm demo mới; không tự tuyên bố sản phẩm thực tế bán chạy.
+- Tag sản phẩm lấy từ badge/tag hiển thị trên đúng product card trong Figma. Giữ nguyên chữ hoa/thường, dấu, khoảng trắng và nội dung; không tự đổi `new` thành `New`, thêm `badge:`, dấu `!` hoặc tên template. Kiểu chữ uppercase trong thiết kế là presentation, không thay đổi text nguồn.
+- Sản phẩm không có tag trong Figma thì để tag rỗng. Không tự gắn `New`, `Bestseller`, tag vendor/template, tag phân loại hay tag nội bộ như `Figma-…` để đánh dấu nguồn. Dùng manifest/receipt và ID/handle để theo dõi tài nguyên.
+- Tag Figma chưa có trên store thì tạo và gắn cho đúng sản phẩm; tái sử dụng tag có nội dung khớp. Nếu Shopify chuẩn hóa khác nguồn (chẳng hạn hoa/thường của tag đã có), đọc lại và ghi rõ sai khác; không đổi tag dùng chung của catalog khác để ép khớp.
+- `Sale` và `Sold out` là badge trạng thái theo giá/compare-at và tồn kho; không tạo product tag thay thế chúng hoặc tự đổi giá/tồn kho trong tác vụ chỉ sửa tag. Giữ ngoại lệ theo yêu cầu người dùng.
+- Khi cập nhật sản phẩm có sẵn, việc dọn tag ngoài Figma chỉ thực hiện khi người dùng yêu cầu; giới hạn vào catalog của theme đích. Sau khi lưu, đọc lại tag từng sản phẩm và đối chiếu manifest Figma trước khi báo hoàn tất.
 
 ### Giá và tồn kho
 

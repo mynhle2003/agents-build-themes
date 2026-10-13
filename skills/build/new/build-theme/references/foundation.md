@@ -1,5 +1,17 @@
 # Foundation
 
+## Ưu tiên option trước CSS custom
+
+Áp dụng cho các yêu cầu build, rebuild, custom, fix, tối ưu và cập nhật giao diện theme, **không bao gồm tác vụ `build-preset`**. Build preset giữ phạm vi và ngoại lệ riêng của skill `build-preset`.
+
+1. Đọc schema, giá trị hiện tại và mapping runtime để xác định option Theme Settings/section/block đúng owner, thuộc tính và breakpoint. Ưu tiên cấu hình option hiện có trước khi sửa CSS custom; không hard-code hoặc override thuộc tính mà option đã điều khiển được. Nếu option không hoạt động đúng, kiểm tra và sửa mapping trong phạm vi implementation được yêu cầu.
+2. Nếu giá trị Figma nằm ngoài range hiện có, được mở rộng `min` xuống thấp hơn và/hoặc `max` lên cao hơn để chứa giá trị đó; tính lại `step` ngay khi đổi biên. Giữ ID, kiểu, unit và ý nghĩa setting; không đổi sang setting mới chỉ để né giới hạn.
+3. Range phải có `min < max`, `step > 0`, các thuộc tính số đúng định dạng Shopify và `(max - min) / step` là số nguyên không quá 100, tức tối đa **101 giá trị chọn được** kể cả hai đầu. `step >= (max - min) / 100` chỉ là điều kiện cần; chọn bước chia hết khoảng range và biểu diễn được giá trị Figma, default cùng các giá trị đã lưu chịu tác động: `(value - min) / step` phải là số nguyên và value nằm trong range. Không chỉ tăng max, không tự làm tròn Figma hoặc âm thầm đổi giá trị đã lưu. Ví dụ `min: 0, max: 500, step: 5` có 101 giá trị chọn được; `step: 1` có 501 và không hợp lệ. Nếu không tìm được range hợp lệ giữ các giá trị cần thiết, báo rõ gap để quyết định thay đổi contract.
+4. Sau khi xử lý option và range, mới đọc CSS custom đang có cho các thuộc tính còn thiếu option. Chỉ thêm/sửa CSS custom cho phần không có option tương ứng và nằm trong phạm vi yêu cầu; scope selector theo component/instance, giữ token và hành vi responsive/editor. Yêu cầu chỉ cấu hình vẫn báo gap cho phần cần custom implementation.
+5. Kiểm tra schema/JSON, Theme Check, giá trị đã lưu và output desktop/mobile/editor chịu tác động; thử thay đổi option để xác nhận CSS custom không vô hiệu hóa control. Báo các range đã đổi và phần còn cần custom.
+
+Tham khảo định dạng và hành vi làm tròn/clamp của [Shopify range settings](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#range); xác minh schema với Shopify khi điều chỉnh range.
+
 ## Architecture layers
 
 Build the theme in four deliberate layers. A lower layer provides tokens and context; a higher layer composes them. Do not move a responsibility upward merely to make one component convenient.

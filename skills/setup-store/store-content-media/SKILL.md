@@ -19,6 +19,7 @@ Xử lý đúng nhóm dữ liệu người dùng yêu cầu. Audit chỉ đọc;
 ## Chọn reference theo tác vụ
 
 - Product, variant, stock, swatch, summary, ảnh gallery: [Products](references/products.md).
+- Tag sản phẩm phải khớp đúng Figma theo [Products — Tên và phân loại](references/products.md#tên-và-phân-loại); không tự gắn tag mặc định hoặc tag nội bộ khi tạo sản phẩm.
 - Collection, ảnh và membership: [Collections](references/collections.md).
 - Blog riêng theo template, bài viết và publication: [Blogs](references/blogs.md).
 - Chuyển/upload ảnh AVIF và giới hạn CDN: [Images](references/images-avif.md).

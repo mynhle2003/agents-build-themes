@@ -16,7 +16,7 @@
 - Title giữ nội dung tiêu đề trong thiết kế; không tự thêm hậu tố template. Với bài mới cần phân biệt trong shop dùng chung, dùng handle `<template-slug>-<article-slug>`.
 - Nội dung có phần mở đầu, các đoạn/đề mục dễ đọc và kết thúc phù hợp; excerpt là tóm tắt ngắn cho blog card, không để HTML lỗi hoặc placeholder.
 - Dùng ảnh đúng thiết kế. Nếu cần ảnh demo, tạo ảnh phù hợp chủ đề, đúng tỷ lệ khung card; upload vào Shopify và gắn vào article, không đưa vào theme `assets`.
-- Tác giả và ngày đăng lấy từ nguồn/yêu cầu; không giả danh tác giả hoặc tổ chức. Nếu thiếu tác giả, dùng tác giả mặc định đã xác nhận của blog/store; nếu chưa xác nhận thì ghi thiếu.
+- Khi tạo bài viết, tên tác giả mặc định là `Author name`; nếu người dùng chỉ định tên tác giả khác thì dùng tên đó. Không giả danh tác giả hoặc tổ chức. Ngày đăng lấy từ nguồn/yêu cầu.
 - Gắn tag phù hợp nếu có yêu cầu. Bổ sung SEO title/meta description phù hợp nội dung, không nhồi từ khóa.
 - Đặt trạng thái đăng bài theo yêu cầu. Bài cần xuất hiện ngay trên homepage demo phải khả dụng ở thời điểm kiểm tra; không dùng ngày đăng tương lai khiến card trống.
 - Gắn blog/article vào đúng picker mà section hỗ trợ. Nếu section lấy bài theo thứ tự blog, kiểm tra thứ tự/ngày đăng để bài featured và bài phụ hiển thị đúng; không sửa dữ liệu bài cũ ngoài phạm vi để ép thứ tự.

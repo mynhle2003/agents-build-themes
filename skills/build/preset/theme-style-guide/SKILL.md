@@ -7,6 +7,8 @@ description: Ánh xạ style guide Figma vào mọi option Shopify Theme Setting
 
 Ánh xạ mọi thuộc tính style guide Figma có option tương ứng trong Theme Settings hiện có: typography heading/body/accent, color scheme, button, tag/badge, shape, spacing, icon, form và các nhóm khác. Không giới hạn việc đồng bộ theo nhóm tính năng. Quy tắc cốt lõi: **không thêm hoặc xóa option Theme Settings**; thuộc tính có option biểu diễn được thì ánh xạ và cập nhật.
 
+Áp dụng [Ưu tiên option trước CSS custom](../../new/build-theme/references/foundation.md#ưu-tiên-option-trước-css-custom). Khi skill được cài vào repo đích với cấu trúc phẳng, đọc `.agents/skills/build-theme/references/foundation.md` ở mục này.
+
 ## Giới hạn chỉnh sửa
 
 - Mặc định cập nhật giá trị trong `config/settings_data.json`. Không thêm hoặc xóa setting/option Theme Settings. Được điều chỉnh min/max/step của setting range đang có để biểu diễn giá trị Figma và sửa mapping Liquid/CSS để option hiện có điều khiển đúng output; giữ ID, kiểu và các lựa chọn select hiện có. Giữ default nếu vẫn hợp lệ, nếu cần đổi default thì báo rõ. Không tạo setting mới để bù thuộc tính thiếu. Ghi hồ sơ custom khi sửa implementation theo quy tắc repo.
@@ -17,7 +19,7 @@ description: Ánh xạ style guide Figma vào mọi option Shopify Theme Setting
 ## Ánh xạ mọi option hiện có
 
 - Bắt đầu từ bằng chứng Figma và toàn bộ schema hiện tại; các bảng bên dưới là gợi ý ID, không phải danh sách cho phép đóng. Với option ngoài bảng, đọc nơi tiêu thụ Liquid/CSS/JS để xác minh ý nghĩa và ánh xạ tương tự.
-- Cập nhật đúng kiểu và giá trị select. Với range có sẵn chưa chứa giá trị Figma, mở rộng min/max hoặc giảm step tối thiểu để giá trị hợp lệ, giữ các giá trị/default đã lưu hợp lệ và giới hạn Shopify. Không làm tròn sang giá trị gần nhất. Nếu runtime bỏ qua option hoặc override trái ý nghĩa option, sửa mapping hiện có và ghi hồ sơ custom; chỉ báo thiếu khi cần thêm setting/lựa chọn mới hoặc không có bằng chứng thiết kế.
+- Cập nhật đúng kiểu và giá trị select. Với range có sẵn chưa chứa giá trị Figma, điều chỉnh min/max/step theo quy tắc chung để giá trị hợp lệ, giữ các giá trị/default đã lưu hợp lệ và giới hạn Shopify. Không làm tròn sang giá trị gần nhất. Nếu runtime bỏ qua option hoặc override trái ý nghĩa option, sửa mapping hiện có và ghi hồ sơ custom; chỉ báo thiếu khi cần thêm setting/lựa chọn mới hoặc không có bằng chứng thiết kế.
 - Đọc font family/weight/style của nội dung thiết kế, không lấy font chú thích. Với `font_picker`, xác minh handle trong danh mục Shopify trước khi ghi. Setting chung phải phù hợp mọi role/breakpoint chịu tác động; không đổi font body sang weight 500 chỉ để khớp button nếu body Figma dùng 400.
 - Phân biệt giá trị chung với breakpoint cụ thể. Token được chỉ định chung áp dụng cho các setting breakpoint tương ứng nếu không có override trong thiết kế; frame chỉ định desktop không tự tạo bằng chứng mobile.
 - Body: ánh xạ family/weight/style vào `type_primary_font`, base size vào `type_body_size`, line-height vào `type_body_leading` sau khi đọc runtime. Body role 12/14/18px có thể là token cố định, không đổi base size để mô phỏng mọi role. Accent dùng `type_accent_font` khi có bằng chứng đúng role.

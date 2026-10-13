@@ -7,6 +7,8 @@ description: "Build or change Shopify theme foundations, sections and reusable b
 
 Dùng khi xây mới hoặc sửa implementation trong repo theme có foundation tương ứng. Đọc `AGENTS.md` và code repo đích trước; không áp đường dẫn máy, nhánh hoặc store của repo nguồn sang dự án khác. Nếu foundation khác các reference dưới đây, ưu tiên contract repo đích và ghi rõ phần cần điều chỉnh.
 
+Đọc và áp dụng [Ưu tiên option trước CSS custom](references/foundation.md#ưu-tiên-option-trước-css-custom) cho build, rebuild, custom, fix và tối ưu trước khi chọn cách sửa.
+
 ## Preflight
 
 
