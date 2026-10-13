@@ -37,7 +37,7 @@ Every decision must have one owner. A section must not invent a data context, co
 - Section, placement, schema, DOM và quyền sở hữu: [Section contract](references/section-contract.md).
 - Kernel/compound block, alignment và JavaScript/editor lifecycle: [Blocks and runtime](references/blocks-and-runtime.md).
 
-Reference chứa contract của base nguồn; kiểm tra consumer thực tế trước khi áp dụng. Không tự tạo registry, mở placement hoặc thêm setting ngoài brief. Cấu hình preset bằng implementation có sẵn thuộc skill `build-preset`.
+Reference chứa contract của base nguồn; kiểm tra consumer thực tế trước khi áp dụng. Không tự tạo registry, mở placement hoặc thêm setting ngoài brief. Cấu hình preset bằng implementation có sẵn thuộc skill `build-preset`. Preset/template chỉ chỉnh trong file local; không sửa/lưu trực tiếp trên store bằng Shopify bot/API hoặc Theme Editor nếu chưa có cho phép rõ ràng riêng cho thao tác đó. Upload content/media và push theme là quyền riêng, không tự cấp quyền chỉnh preset trên store.
 
 ## Kiểm tra trong lúc build
 

@@ -19,11 +19,11 @@
 
 Tham chiếu hiện hành: [stagedUploadsCreate](https://shopify.dev/docs/api/admin-graphql/latest/mutations/stagedUploadsCreate), [fileCreate](https://shopify.dev/docs/api/admin-graphql/latest/mutations/fileCreate), [Video](https://shopify.dev/docs/api/admin-graphql/latest/objects/Video). Tra lại khi API/tool khác; không áp giới hạn file hoặc field đã cũ.
 
-## Gắn vào preset và instance
+## Gắn vào preset và instance local
 
 - Đọc schema block trước khi ghi settings. Video Shopify Files dùng setting `type: video`; `video_url` dành cho YouTube/Vimeo. Không nhét MP4 CDN URL vào `video_url`, dùng ảnh preview thay video hoặc ghi GID trực tiếp vào setting khi chưa xác minh dạng tham chiếu.
-- Lấy giá trị resource đã được Theme Editor lưu hoặc readback theme xác nhận. Tham chiếu thường có dạng `shopify://files/videos/<filename>`, nhưng phải xác minh filename/reference thật trong store; không đoán từ URL CDN hoặc SHA. Giữ Video ID trong ledger để đối chiếu.
-- Ghi resource vào **settings của block Video** trong section schema `presets[].blocks` và instance JSON template được yêu cầu. Không thêm `default` vào định nghĩa setting `type: video`: [Shopify video settings](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#video) không hỗ trợ thuộc tính này. Schema preset và instance đã lưu là hai cấu hình riêng, sửa một phía không cập nhật phía kia.
+- Lấy resource reference từ metadata Files hoặc readback cấu hình đã có ở chế độ đọc; không save Theme Editor hay sửa preset trên store để lấy reference. Tham chiếu thường có dạng `shopify://files/videos/<filename>`, nhưng phải xác minh filename/reference thật trong store; không đoán từ URL CDN hoặc SHA. Giữ Video ID trong ledger để đối chiếu.
+- Chỉ ghi resource trong file repo vào **settings của block Video** trong section schema `presets[].blocks` và instance JSON template được yêu cầu. Không thêm `default` vào định nghĩa setting `type: video`: [Shopify video settings](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#video) không hỗ trợ thuộc tính này. Schema preset và instance đã lưu là hai cấu hình riêng, sửa một phía không cập nhật phía kia.
 - Nếu yêu cầu chỉ cập nhật preset, chỉ sửa preset. Nếu yêu cầu cả homepage, cập nhật đúng instance và giữ vị trí section theo Figma. Không thay composition đang custom hoặc preset khác ngoài phạm vi.
 - Với Video product carousel (custom), dùng cây **Header → Carousel → Slide → [Video, Product card: Compact]**. Video và Compact là hai block ngang hàng trong Slide, thứ tự Video trước. Không tạo block gộp `Video + Product: Compact`; product picker thuộc Compact, nguồn/poster/playback thuộc Video, gap thuộc Slide và navigation/columns thuộc Carousel.
 - Trong repo hiện tại, block Video dùng `video_source: uploaded`, `video: <resource đã xác minh>`, `cover_image`, `autoplay` và `loop_video`. Giữ lựa chọn autoplay/loop hiện có nếu brief không đổi; ảnh cover không được upload lại khi đã tồn tại. Video vắng nguồn thì giữ cover fallback nếu schema hỗ trợ; không hiển thị điều khiển Play giả.
@@ -32,5 +32,5 @@ Tham chiếu hiện hành: [stagedUploadsCreate](https://shopify.dev/docs/api/ad
 ## Kiểm tra kết quả
 
 - Validate schema và JSON/JSONC, Theme Check, cấu trúc block và đúng resource ở cả preset/instance trong phạm vi. Kiểm tra không có video source tạm từ Figma/staging được lưu vào theme.
-- Với theme đã được đẩy theo yêu cầu, readback Video picker và preview desktop/mobile: poster → Play/Pause, crop/ratio, loop/autoplay theo setting, keyboard/focus, âm thanh và reduced motion. Add/duplicate/reorder/save/reload phải giữ media đúng slide. Không báo playback đã xác minh nếu chỉ kiểm tra JSON hoặc poster.
+- Với theme đã được đẩy theo yêu cầu, readback Video picker và preview desktop/mobile: poster → Play/Pause, crop/ratio, loop/autoplay theo setting, keyboard/focus, âm thanh và reduced motion. Không thao tác add/duplicate/reorder/save trên store để QA khi chưa được người dùng cho phép rõ ràng; kiểm tra cấu trúc trong file local và preview/readback chỉ đọc. Không báo playback đã xác minh nếu chỉ kiểm tra JSON hoặc poster.
 - Bàn giao số video upload/tái sử dụng, clip/node và Video ID tương ứng, preset/template đã sửa, trạng thái READY/pending/thiếu nguồn, kết quả validation và tình trạng deploy.

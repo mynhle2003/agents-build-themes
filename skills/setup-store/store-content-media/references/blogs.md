@@ -6,7 +6,7 @@
 - Mỗi template có một blog riêng để chứa các bài viết mới của template đó. Blog mang tên template và dùng handle `<template-slug>`; ví dụ làm template Perky thì dùng blog **Perky**, handle `perky`, rồi tạo mọi bài viết mới của Perky trong blog này.
 - Kiểm tra blog theo tên, handle và ID trước khi tạo. Nếu đã có blog đúng template thì dùng lại; nếu chưa có thì tạo blog trước, lấy ID trả về rồi dùng ID đó khi tạo bài viết. Không tạo blog riêng cho từng bài hoặc tạo trùng blog mỗi lần chạy.
 - Không gắn bài mới vào `News` hoặc blog của template khác chỉ vì section hiện đang chọn blog đó. Nếu người dùng chỉ định rõ một blog đích khác, ưu tiên chỉ định đó.
-- Khi được yêu cầu gắn nội dung vào Theme Editor, chọn blog riêng của template trong picker của section và gắn article thuộc blog đó. Kiểm tra trang blog, link bài viết và nút View all đều dẫn đúng blog.
+- Khi được yêu cầu gắn nội dung vào preset/template, ghi handle blog riêng của template và article thuộc blog đó vào đúng setting trong file local; không chọn rồi save picker trên store. Kiểm tra trang blog, link bài viết và nút View all đều dẫn đúng blog.
 - Đọc lại quan hệ article → blog sau khi tạo; lưu blog ID/title/handle cùng article ID/handle vào manifest và receipt/audit. Không tự chuyển bài viết có sẵn ngoài phạm vi yêu cầu.
 
 ### Nội dung và hiển thị bài viết
@@ -19,5 +19,5 @@
 - Khi tạo bài viết, tên tác giả mặc định là `Author name`; nếu người dùng chỉ định tên tác giả khác thì dùng tên đó. Không giả danh tác giả hoặc tổ chức. Ngày đăng lấy từ nguồn/yêu cầu.
 - Gắn tag phù hợp nếu có yêu cầu. Bổ sung SEO title/meta description phù hợp nội dung, không nhồi từ khóa.
 - Đặt trạng thái đăng bài theo yêu cầu. Bài cần xuất hiện ngay trên homepage demo phải khả dụng ở thời điểm kiểm tra; không dùng ngày đăng tương lai khiến card trống.
-- Gắn blog/article vào đúng picker mà section hỗ trợ. Nếu section lấy bài theo thứ tự blog, kiểm tra thứ tự/ngày đăng để bài featured và bài phụ hiển thị đúng; không sửa dữ liệu bài cũ ngoài phạm vi để ép thứ tự.
+- Ghi handle/reference blog/article vào setting resource mà section hỗ trợ trong preset/template local. Nếu section lấy bài theo thứ tự blog, kiểm tra thứ tự/ngày đăng để bài featured và bài phụ hiển thị đúng; không sửa dữ liệu bài cũ ngoài phạm vi để ép thứ tự.
 - Kiểm tra ảnh, title, excerpt, tác giả/ngày nếu bật, link card, trang bài viết và nút View all với dữ liệu thật.

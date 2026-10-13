@@ -18,11 +18,11 @@
 - Upload ảnh vào Shopify và gắn trực tiếp vào trường ảnh collection. Không tạo bản dự phòng trùng lặp nếu không được yêu cầu.
 - Viết description phù hợp nhóm sản phẩm, không thêm thông tin kỹ thuật hoặc tuyên bố chưa có nguồn.
 
-### Membership và editor
+### Membership và preset/template local
 
 - Dùng manual collection cho nhóm được chọn thủ công trong thiết kế. Chỉ dùng smart collection khi có quy tắc rõ ràng; kiểm tra membership thực tế sau khi áp dụng.
 - Chọn sản phẩm đúng category/chủ đề; không thêm sản phẩm không liên quan để đủ số lượng.
 - Nếu yêu cầu có số lượng tối thiểu, đáp ứng số lượng đó. Yêu cầu cũ “ít nhất 5 sản phẩm mỗi danh mục” xuất phát từ shop trang sức; không tự áp dụng cho mọi template mới. Nếu thiếu sản phẩm phù hợp, báo thiếu và đề xuất nguồn/nội dung demo.
-- Gắn collection vào đúng resource picker, tab, thumbnail, banner, hotspot hoặc nút liên quan theo phạm vi yêu cầu. Dùng link collection thật và ảnh collection thật.
+- Ghi handle collection vào đúng setting resource trong preset/template local; tab, thumbnail, banner, hotspot hoặc nút dùng URL/reference phù hợp schema. Không chọn rồi save picker trên store. Dùng link collection thật và ảnh collection thật.
 - Nếu người dùng yêu cầu tạo collection trước, có thể để sản phẩm trống, nhưng phải báo rõ. Không báo catalog đã hoàn thành khi membership chưa được bổ sung.
 - Kiểm tra trạng thái khả dụng trên Online Store theo yêu cầu và môi trường demo hiện tại.

@@ -7,6 +7,12 @@ description: "Configure existing Shopify sections and blocks from Figma through 
 
 Build the closest practical match to a Figma section using section and block types already present in the target theme. Configure its existing preset composition and settings, check desktop and mobile rendering, then list the visible gaps. Existing height-option calibration is the narrow implementation exception below; other gaps remain unimplemented.
 
+## Preset/template local và media store
+
+- Chỉ chỉnh preset/composition trong file repo. Không sửa hoặc lưu preset/template trực tiếp trên store qua Shopify bot, connector/API hay Theme Editor nếu chưa được người dùng cho phép rõ ràng riêng cho thao tác đó. Build preset, upload media hoặc yêu cầu gắn resource không tự cấp quyền này.
+- Khi có yêu cầu media/content, dùng store để upload/tái sử dụng ảnh/video và chuẩn bị resource; gắn URL lâu dài/resource reference đúng kiểu setting hoặc handle product/collection/blog/article vào preset/template local. Không save picker trên store để tạo reference. Đọc [ranh giới store content và preset local](../../../setup-store/store-content-media/SKILL.md#ranh-giới-store-content-và-preset-local); khi đã cài skill phẳng, đọc `.agents/skills/store-content-media/SKILL.md`.
+- Deploy file local cần quyền push riêng; preview/readback chỉ đọc, không lưu cấu hình trên store.
+
 ## Scope
 
 - Inspect and reuse existing `sections/*.liquid` and `blocks/*.liquid` types. Do not add, rename, or replace section/block implementations.
