@@ -15,6 +15,8 @@ Build the closest practical match to a Figma section using section and block typ
 
 ## Scope
 
+- **Category trong Add section.** Khi build hoặc đồng bộ composition từ template, giữ metadata `name`/`category` và áp dụng [QA category theo base `main`](../../../qa/references/section-qa-baseline.md#add-section-category-theo-base-main): dùng đúng category của preset gốc; section riêng chỉ dùng category phù hợp đã có trên base, không tạo category mới.
+
 - Inspect and reuse existing `sections/*.liquid` and `blocks/*.liquid` types. Do not add, rename, or replace section/block implementations.
 - Configuration changes may update an existing section's `presets` entries inside its `{% schema %}` and the target page's `templates/*.json` or section-group JSON composition and settings. In a preset, use only block types and setting IDs already declared by that section/block.
 - Treat all other schema content as read-only: do not add settings, IDs, options, block allow-list entries, or alter limits/placement guards.
