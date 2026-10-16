@@ -20,12 +20,12 @@ Lập một plan tại `docs/theme-init/<slug>.md` trước mutation theme. Tái
 | Tạo worktree | Đúng branch/path, SHA nguồn, hồ sơ; variant có diff code/config ban đầu rỗng so với nguồn |
 | Khảo sát | Khi build: bản đồ Header → homepage → Footer đủ desktop/mobile; clone-only không cần khảo sát Figma |
 | Style Guide | New: mapping bằng chứng → setting → trước/sau, giá trị hợp lệ; variant: `inherited` từ SHA nguồn, bỏ qua đọc/áp lại style |
-| Chuẩn bị composition | New: backup và reset homepage đúng một lần; variant: giữ bản kế thừa và đánh dấu vùng reuse/change/remove |
+| Chuẩn bị composition | Cả hai mode: backup, đối chiếu layout với preset/instance hiện có, ghi ứng viên và quyết định reuse/change/add/remove; không reset toàn bộ template |
 | Build tuần tự | Mỗi vùng đã cấu hình preset + instance, media readback, validate; blocker không còn việc khả thi thì chuyển vùng độc lập |
 | QA / preview | Theme Check, diff phạm vi, desktop/mobile, local/Editor sync được xác minh hoặc ghi rõ phần chưa kiểm chứng |
 | Bàn giao | Trạng thái từng vùng, gap và resource pending; file/branch, preview/theme ID và quyền deploy thực tế |
 
-Mỗi dòng bản đồ section ghi: thứ tự/vùng, node desktop/mobile, section type và block tree, reuse/change/remove (variant), đường dẫn preset và instance, media/resource, trạng thái, evidence cuối và việc tiếp theo. Khi một type dùng nhiều nơi, liệt kê tất cả consumer trước đổi preset; homepage không cấp quyền ghi đè trang collection.
+Mỗi dòng bản đồ section ghi: thứ tự/vùng, node desktop/mobile, section type và block tree, preset/instance ứng viên, reuse/change/add/remove và delta cần chỉnh (cả hai mode), đường dẫn preset và instance, media/resource, trạng thái, evidence cuối và việc tiếp theo. Khi một type dùng nhiều nơi, liệt kê tất cả consumer trước đổi preset; homepage không cấp quyền ghi đè trang collection.
 
 Trạng thái dùng thống nhất: `pending`, `in-progress`, `complete`, `configured-unverified`, `blocked`, `skipped`. `complete` cần đủ cấu hình, resource và kiểm chứng yêu cầu; không gộp “đã viết JSON” với “đã xem preview”.
 

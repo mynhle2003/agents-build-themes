@@ -11,7 +11,7 @@ Khởi tạo theme mới từ base hoặc theme biến thể từ theme đã có
 
 Khi gọi skill để khởi tạo, **hỏi rõ “Tạo theme mới hay theme biến thể từ theme đã có?” trước khi tạo branch/worktree** nếu người dùng chưa chọn. Không tự suy từ tên theme hoặc độ giống thiết kế. Nếu yêu cầu đã nói rõ một lựa chọn, dùng lựa chọn đó, không hỏi lại. Với yêu cầu tiếp tục, đọc mode đã lưu trong plan và tiếp tục đúng checkpoint. Khi chỉ bảo trì skill, không chạy câu hỏi khởi tạo.
 
-- **Theme mới:** nguồn là `main` của base cá nhân; Style Guide → reset riêng homepage → build từ trên xuống.
+- **Theme mới:** nguồn là `main` của base cá nhân; Style Guide → đối chiếu layout với preset/instance hiện có → tái sử dụng và chỉnh delta từ trên xuống; không reset toàn bộ homepage.
 - **Theme biến thể:** hỏi theme nguồn nếu chưa có; tạo branch và worktree mới từ code mới nhất của theme nguồn tại thời điểm tạo, lấy y hệt section/block, logic, preset, template và Theme Settings. **Không đọc lại Style Guide, không hỏi link Style Guide, không áp lại token và không reset composition.** Ghi SHA hiện tại làm checkpoint, không dùng checkpoint cũ lúc theme nguồn mới init. Không tạo từ `main` rồi chép vài file. Ví dụ Essen–Arche và Elara–Malandra là các cặp biến thể theo yêu cầu chủ repo; cặp tên không quyết định chiều kế thừa, phải xác định nguồn → đích.
 - Các section/logic giống nhau tiếp tục dùng implementation đã kế thừa, không nhân bản hoặc đổi tên để tạo phiên bản riêng. Khác biệt design ưu tiên cấu hình hiện có. Nếu cần logic mới, ghi gap để xử lý bằng yêu cầu implementation riêng. Nhánh biến thể là snapshot độc lập; đăng ký quan hệ và mốc cập nhật hai chiều theo [Hồ sơ cập nhật biến thể](references/variant-updates.md). Khi tiếp tục build/sửa lỗi, đọc hồ sơ để phát hiện fix cần chuyển giữa các theme; không tự merge hoặc đưa custom vào `main`.
 
@@ -83,9 +83,20 @@ Lập bản đồ theo thứ tự trang: node desktop/mobile → section type �
 
 Đối chiếu tài nguyên dùng chung toàn trang (product, collection, logo, ảnh/video, navigation) để tránh tạo trùng về sau. Ghi bản đồ và tiến độ vào tài liệu init riêng của theme, ví dụ `docs/theme-init/<slug>.md`; không dùng log base hoặc bịa mục custom implementation. Bản đồ phải hoàn tất trước khi dựng section đầu tiên. Section không có ứng viên phù hợp được đánh dấu `skipped` kèm chi tiết thiếu và báo lại, vẫn làm phần phù hợp.
 
+### Kiểm tra layout và tái sử dụng preset trước khi chỉnh template
+
+Áp dụng cho cả theme mới và biến thể. Trước mutation composition, đối chiếu từng vùng Figma desktop/mobile với **instance đang có trong template/group** và **preset đã đăng ký của section**. So sánh hierarchy/cây block, thứ tự, layout responsive, content/media và setting có thể cấu hình; không kết luận giống chỉ dựa vào tên preset hoặc thumbnail.
+
+- Khớp layout: giữ instance, ID, cây block, setting và reference đã xác minh; chỉ cập nhật delta có bằng chứng.
+- Gần khớp và control hiện có đủ đáp ứng: tái sử dụng preset/cây block phù hợp rồi chỉnh phần khác biệt; không dựng lại từ đầu.
+- Chưa có instance phù hợp: dùng preset có sẵn phù hợp nhất để thêm instance riêng. Chỉ dựng composition mới từ block hiện có khi không preset nào đáp ứng, vẫn giữ giới hạn không sửa implementation.
+- Vùng cũ không có trong thiết kế đích: ghi rõ `remove` trong bản đồ rồi xử lý riêng vùng đó; không xóa hàng loạt để làm trống template. Giữ các vùng chưa khảo sát/chưa đủ bằng chứng.
+
+Ghi preset/instance ứng viên, kết quả `reuse/change/add/remove`, lý do và delta cần chỉnh vào plan trước khi build. Không reset toàn bộ `sections`/`order`, không xóa mọi preset trong template/schema. Khi cùng section type có nhiều consumer, chỉnh instance đích và bảo toàn các instance còn lại; chỉ cập nhật preset mặc định theo quy tắc build-preset sau khi rà consumer.
+
 ## 3. Áp dụng style guide
 
-Đây là checkpoint bắt buộc cho **theme mới** trước reset/build. **Biến thể bỏ qua bước này**, ghi `inherited` kèm SHA nguồn trong plan; không đọc lại Figma Style Guide hay ghi lại Theme Settings. Chỉ mở lại bước style khi người dùng yêu cầu riêng thay đổi style. Với theme mới, ghi riêng normal/hover của primary, secondary, tertiary, font weight, tracking và underline: thiếu bằng chứng hover thì giữ nguyên và ghi chưa xác minh, không coi màu normal là bằng chứng hover.
+Đây là checkpoint bắt buộc cho **theme mới** trước chỉnh composition/build. **Biến thể bỏ qua bước này**, ghi `inherited` kèm SHA nguồn trong plan; không đọc lại Figma Style Guide hay ghi lại Theme Settings. Chỉ mở lại bước style khi người dùng yêu cầu riêng thay đổi style. Với theme mới, ghi riêng normal/hover của primary, secondary, tertiary, font weight, tracking và underline: thiếu bằng chứng hover thì giữ nguyên và ghi chưa xác minh, không coi màu normal là bằng chứng hover.
 
 Dùng theme-style-guide đọc toàn bộ Theme Settings schema và ánh xạ thuộc tính Figma có bằng chứng vào `config/settings_data.json` của worktree: typography, scheme, button, badge và các nhóm có control tương ứng. Xác minh font handle, giá trị và tham chiếu scheme theo skill phụ thuộc. Chỉ chỉnh `current`, giữ comment đầu file, saved presets và giá trị ngoài phạm vi. Áp dụng [quy trình Global Theme Settings của build-preset](../build-preset/SKILL.md#global-theme-settings-trong-configsettings_datajson): đọc schema và nơi setting được sử dụng, kiểm tra kiểu/option/min/max/step, ghi giá trị cũ/mới cùng bằng chứng Figma và ảnh hưởng tới các section/block dùng chung. Không cần xin phép riêng để sửa file local trong phạm vi init đã yêu cầu.
 
@@ -95,7 +106,7 @@ Với token thiếu control hoặc cần sửa implementation/range, giữ giớ
 
 ## 4. Hoàn thiện tuần tự từng section
 
-Với theme mới, sau khi hoàn tất bước Style Guide và trước khi dựng instance đầu tiên, lưu bản composition trước reset ở thư mục local ignored rồi reset template homepage đích: đặt `sections` thành `{}` và `order` thành `[]`, giữ comment đầu file và metadata ngoài composition. Đây là xóa instance demo trong template, không xóa đăng ký `presets[]` của section, implementation hay template trang khác. Đánh dấu reset đã thực hiện trong plan. **Biến thể không reset homepage**: giữ composition kế thừa rồi chỉnh vùng khác biệt theo bản đồ. Không tự reset lại khi tiếp tục theme đã build; kiểm tra trạng thái và giữ instance đã hoàn thiện. Header/Footer được dựng trong group tương ứng theo bản đồ, không xóa group ngoài phạm vi.
+Sau khảo sát và bước Style Guide tương ứng mode, lưu backup composition trước chỉnh trong thư mục local ignored. Dùng kết quả đối chiếu preset/instance để chỉnh từng vùng theo bản đồ; **không reset homepage ở cả hai mode**. Giữ ID và cấu hình của instance tái sử dụng, chỉ thêm/xóa/di chuyển vùng có quyết định rõ trong plan. Không xóa preset đăng ký, implementation, template khác hoặc group ngoài phạm vi. Khi tiếp tục, kiểm tra checkpoint và giữ các instance đã hoàn thiện; không tạo lại hoặc reset template.
 
 Đi theo bản đồ Header → homepage từ trên xuống → Footer, gồm các section con trong group. Với **mỗi section**:
 
