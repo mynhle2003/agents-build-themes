@@ -1,15 +1,25 @@
 ---
 name: init-theme
-description: "Khởi tạo nhánh và worktree Shopify theme từ base, ánh xạ Figma style guide và homepage desktop/mobile bằng section/block có sẵn, cấu hình Theme Settings local trong config/settings_data.json, hoàn thiện preset và content/media từng section mà không custom implementation."
+description: "Khởi tạo Shopify theme mới từ main hoặc theme biến thể kế thừa theme nguồn; lập plan Figma, áp dụng Style Guide, dựng preset và content/media bằng section/block hiện có, kiểm chứng preview mà không custom implementation."
 ---
 
 # Init Theme
 
-Khởi tạo theme từ base hiện tại rồi dựng Header → template homepage → Footer theo Figma. Khảo sát toàn trang trước; sau đó hoàn thiện layout, content/media và đối chiếu desktop/mobile của từng section trước khi chuyển section tiếp theo. Đây là workflow cấu hình bằng khả năng hiện có, tuyệt đối không custom implementation.
+Khởi tạo theme mới từ base hoặc theme biến thể từ theme đã có rồi dựng Header → template homepage → Footer theo Figma. Khảo sát toàn trang trước; sau đó hoàn thiện layout, content/media và đối chiếu desktop/mobile của từng section trước khi chuyển section tiếp theo. Đây là workflow cấu hình bằng khả năng hiện có; được kế thừa implementation của theme nguồn, không viết/sửa implementation mới trong init.
+
+## Chọn flow trước khi khởi tạo
+
+Khi gọi skill để khởi tạo, **hỏi rõ “Tạo theme mới hay theme biến thể từ theme đã có?” trước khi tạo branch/worktree** nếu người dùng chưa chọn. Không tự suy từ tên theme hoặc độ giống thiết kế. Nếu yêu cầu đã nói rõ một lựa chọn, dùng lựa chọn đó, không hỏi lại. Với yêu cầu tiếp tục, đọc mode đã lưu trong plan và tiếp tục đúng checkpoint. Khi chỉ bảo trì skill, không chạy câu hỏi khởi tạo.
+
+- **Theme mới:** nguồn là `main` của base cá nhân; Style Guide → reset riêng homepage → build từ trên xuống.
+- **Theme biến thể:** hỏi theme nguồn nếu chưa có; tạo branch và worktree mới từ code mới nhất của theme nguồn tại thời điểm tạo, lấy y hệt section/block, logic, preset, template và Theme Settings. **Không đọc lại Style Guide, không hỏi link Style Guide, không áp lại token và không reset composition.** Ghi SHA hiện tại làm checkpoint, không dùng checkpoint cũ lúc theme nguồn mới init. Không tạo từ `main` rồi chép vài file. Ví dụ Essen–Arche và Elara–Malandra là các cặp biến thể theo yêu cầu chủ repo; cặp tên không quyết định chiều kế thừa, phải xác định nguồn → đích.
+- Các section/logic giống nhau tiếp tục dùng implementation đã kế thừa, không nhân bản hoặc đổi tên để tạo phiên bản riêng. Khác biệt design ưu tiên cấu hình hiện có. Nếu cần logic mới, ghi gap để xử lý bằng yêu cầu implementation riêng. Nhánh biến thể là snapshot độc lập; đăng ký quan hệ và mốc cập nhật hai chiều theo [Hồ sơ cập nhật biến thể](references/variant-updates.md). Khi tiếp tục build/sửa lỗi, đọc hồ sơ để phát hiện fix cần chuyển giữa các theme; không tự merge hoặc đưa custom vào `main`.
+
+Đọc [Plan và checkpoint](references/execution-plan.md) trước mutation. Lưu mode, nguồn và phạm vi một lần; cập nhật plan khi có evidence hoặc yêu cầu mới.
 
 ## Đầu vào bắt buộc
 
-Khi được yêu cầu **chạy** init theme, hỏi người dùng tên theme nếu chưa cung cấp và yêu cầu đủ ba link Figma có node/frame cụ thể: style guide, homepage desktop, homepage mobile. Tái sử dụng dữ liệu đã cung cấp, không hỏi lại. Xác định repo base và store domain đích cho content/media; không suy store từ profile minh họa. Thiếu store vẫn có thể khảo sát Figma/repo và cấu hình local; chưa được mutation store. Thiếu một trong ba nguồn Figma thì yêu cầu phần thiếu, không tự coi desktop là bằng chứng mobile.
+Khi được yêu cầu **chạy** init theme, xác định mode ở trên và hỏi tên theme đích nếu chưa cung cấp. **Theme mới** cần đủ ba link Figma có node/frame cụ thể: style guide, homepage desktop, homepage mobile. **Biến thể** hỏi tên đích, theme nguồn và **hai link Figma homepage desktop/mobile** có node/frame cụ thể; không hỏi hoặc đọc Figma Style Guide. Kế thừa nguyên Style Guide đã cấu hình mà không yêu cầu xác nhận dùng chung. Hỏi gộp phần còn thiếu, không hỏi lại dữ liệu đã có. Nếu thiếu link layout, vẫn có thể chuẩn bị branch/worktree từ nguồn đã xác định nhưng chưa build phần thiếu bằng chứng; thiếu store chỉ chặn content/media mutation. Ngoại lệ clone-only chỉ áp dụng khi người dùng nói rõ chỉ sao chép/tạo nhánh, chưa build design. Chỉ rà Style Guide khi có yêu cầu riêng đổi style. Tái sử dụng dữ liệu đã cung cấp, không hỏi lại. Xác định store đích khi có content/media work; không suy store từ profile minh họa. Thiếu store vẫn làm phần local, chưa mutation store. Không tự coi desktop là bằng chứng mobile.
 
 Yêu cầu tạo/sửa **skill này** không phải yêu cầu chạy init: không hỏi tên theme, tạo branch/worktree hay upload store trong lúc bảo trì skill.
 
@@ -33,6 +43,8 @@ Nếu đang dùng bản cài phẳng, tìm các skill cùng tên trong `.agents/
 
 ## 1. Tạo nhánh và worktree
 
+Chọn đúng quy trình: các đoạn tạo từ `main` bên dưới chỉ dành cho **theme mới**. Với **biến thể**, đọc [Tạo nhánh biến thể](references/variant-theme.md); không chạy `new-theme` từ main. Cả hai flow phải ghi checkpoint nguồn để kiểm chứng và tiếp tục, không tự đồng bộ upstream trong init.
+
 Đọc AGENTS.md repo base, trạng thái Git, remotes, `main`, danh sách branch và `git worktree list` trước mutation. Giữ mọi thay đổi có sẵn; base bẩn thì dừng bước tạo theme và báo đường dẫn, không stash/reset hoặc mang diff sang theme mới.
 
 Chuẩn hóa tên thành slug chữ thường, số và gạch ngang; không lặp hậu tố `-theme`. Người dùng nhập `a` → slug `a-theme`, branch `theme/a-theme`, worktree `<thư mục cha repo base>/a-theme`. Nếu tên không chuyển thành slug rõ ràng hoặc trùng branch/path, hỏi phần mơ hồ; không ghi đè, xóa hoặc tái sử dụng theme khác. Với yêu cầu tiếp tục theme đã init, xác minh đúng branch/worktree/hồ sơ trước khi tiếp tục, không tạo lại.
@@ -42,6 +54,8 @@ Theo repo có `node theme-base new-theme`, đọc implementation/help trước k
 Xác minh checkout base ở `main`, worktree mới ở `theme/<slug>`, hồ sơ theme tồn tại và theme không mang log base cá nhân. Từ đây mọi thao tác theme dùng workdir của worktree mới. Không đọc/ghi nội dung log base từ skill này; để lệnh repo xử lý. Không tự cập nhật upstream/base khi init.
 
 ## 2. Khảo sát toàn bộ trước khi build
+
+Phần Figma này dành cho theme mới hoặc giai đoạn build design biến thể đã được yêu cầu; **không chạy khi chỉ clone biến thể**. Clone-only hoàn tất sau kiểm chứng bản sao, hồ sơ và branch/worktree mới; không tự reset/build hoặc đòi đủ ba link Figma. Khi build biến thể, khảo sát layout desktop/mobile và delta với composition kế thừa, dùng nguyên Theme Settings hiện tại.
 
 Áp dụng flow đọc reference của `build-preset`: xác minh node và kích thước, đọc cấu trúc/control, rồi đối chiếu screenshot ở cả hai viewport trước khi ghi cấu hình. Không coi lỗi một công cụ là bằng chứng thiết kế không thể truy cập.
 
@@ -63,13 +77,15 @@ Xác minh checkout base ở `main`, worktree mới ở `theme/<slug>`, hồ sơ 
 - Trong cây layer Dev Mode, có thể dùng menu ngữ cảnh `Expand all children` để đọc một section thay vì mở từng cấp. Khi chọn layer lồng sâu, ưu tiên click đúng nhãn tên bên trong row; click giữa row có thể trúng caret và chỉ đóng/mở cây. Xác minh tên layer và node URL trong Inspect đã đổi trước khi ghi kích thước hoặc tải asset. Không lấy trạng thái hover của row làm bằng chứng selection.
 - Khi người dùng yêu cầu học hỏi trong lúc init, cập nhật skill ở checkout dùng chung bằng bài học đã kiểm chứng và có thể tái dùng; giữ chi tiết theme/node trong tài liệu init. Thay đổi hẹp, kiểm tra link/frontmatter và hành vi liên quan; không tự nới giới hạn implementation, deploy hoặc quyền store. Không tự commit/push skill.
 
-Đọc ba nguồn Figma, screenshot và kích thước frame; phân tách toàn trang thành Header (kể cả announcement/navigation), từng section trong homepage, Footer. So sánh thứ tự, vùng ẩn/hiện và cách chuyển layout ở mobile. Inventory section/block/schema, preset, placement, template và section group thực tế của worktree; không đoán control từ hình ảnh.
+Đọc nguồn Figma theo mode (theme mới: Style Guide + homepage desktop/mobile; biến thể: chỉ homepage desktop/mobile), screenshot và kích thước frame; phân tách toàn trang thành Header (kể cả announcement/navigation), từng section trong homepage, Footer. So sánh thứ tự, vùng ẩn/hiện và cách chuyển layout ở mobile. Inventory section/block/schema, preset, placement, template và section group thực tế của worktree; không đoán control từ hình ảnh.
 
 Lập bản đồ theo thứ tự trang: node desktop/mobile → section type → cây block dự kiến → setting layout responsive → preset/instance local → content/media cần dùng → mức phù hợp hoặc gap. Xem cả block lồng nhau, giới hạn và dependency. Chọn section đúng ngữ nghĩa hỗ trợ cả hai viewport. Chỉ dùng `Custom section` nếu section chứa và block của nó **đã tồn tại**, theo routing/naming của build-preset; không tạo implementation custom.
 
 Đối chiếu tài nguyên dùng chung toàn trang (product, collection, logo, ảnh/video, navigation) để tránh tạo trùng về sau. Ghi bản đồ và tiến độ vào tài liệu init riêng của theme, ví dụ `docs/theme-init/<slug>.md`; không dùng log base hoặc bịa mục custom implementation. Bản đồ phải hoàn tất trước khi dựng section đầu tiên. Section không có ứng viên phù hợp được đánh dấu `skipped` kèm chi tiết thiếu và báo lại, vẫn làm phần phù hợp.
 
 ## 3. Áp dụng style guide
+
+Đây là checkpoint bắt buộc cho **theme mới** trước reset/build. **Biến thể bỏ qua bước này**, ghi `inherited` kèm SHA nguồn trong plan; không đọc lại Figma Style Guide hay ghi lại Theme Settings. Chỉ mở lại bước style khi người dùng yêu cầu riêng thay đổi style. Với theme mới, ghi riêng normal/hover của primary, secondary, tertiary, font weight, tracking và underline: thiếu bằng chứng hover thì giữ nguyên và ghi chưa xác minh, không coi màu normal là bằng chứng hover.
 
 Dùng theme-style-guide đọc toàn bộ Theme Settings schema và ánh xạ thuộc tính Figma có bằng chứng vào `config/settings_data.json` của worktree: typography, scheme, button, badge và các nhóm có control tương ứng. Xác minh font handle, giá trị và tham chiếu scheme theo skill phụ thuộc. Chỉ chỉnh `current`, giữ comment đầu file, saved presets và giá trị ngoài phạm vi. Áp dụng [quy trình Global Theme Settings của build-preset](../build-preset/SKILL.md#global-theme-settings-trong-configsettings_datajson): đọc schema và nơi setting được sử dụng, kiểm tra kiểu/option/min/max/step, ghi giá trị cũ/mới cùng bằng chứng Figma và ảnh hưởng tới các section/block dùng chung. Không cần xin phép riêng để sửa file local trong phạm vi init đã yêu cầu.
 
@@ -79,7 +95,7 @@ Với token thiếu control hoặc cần sửa implementation/range, giữ giớ
 
 ## 4. Hoàn thiện tuần tự từng section
 
-Với theme mới, sau khi hoàn tất bước Style Guide và trước khi dựng instance đầu tiên, reset template homepage đích: đặt `sections` thành `{}` và `order` thành `[]`, giữ comment đầu file và metadata ngoài composition. Đây là xóa instance demo trong template, không xóa đăng ký `presets[]` của section, implementation hay template trang khác. Không tự reset lại khi tiếp tục theme đã build; kiểm tra trạng thái và giữ instance đã hoàn thiện. Header/Footer được dựng trong group tương ứng theo bản đồ, không xóa group ngoài phạm vi.
+Với theme mới, sau khi hoàn tất bước Style Guide và trước khi dựng instance đầu tiên, lưu bản composition trước reset ở thư mục local ignored rồi reset template homepage đích: đặt `sections` thành `{}` và `order` thành `[]`, giữ comment đầu file và metadata ngoài composition. Đây là xóa instance demo trong template, không xóa đăng ký `presets[]` của section, implementation hay template trang khác. Đánh dấu reset đã thực hiện trong plan. **Biến thể không reset homepage**: giữ composition kế thừa rồi chỉnh vùng khác biệt theo bản đồ. Không tự reset lại khi tiếp tục theme đã build; kiểm tra trạng thái và giữ instance đã hoàn thiện. Header/Footer được dựng trong group tương ứng theo bản đồ, không xóa group ngoài phạm vi.
 
 Đi theo bản đồ Header → homepage từ trên xuống → Footer, gồm các section con trong group. Với **mỗi section**:
 
@@ -91,6 +107,8 @@ Với theme mới, sau khi hoàn tất bước Style Guide và trước khi dự
 6. Ghi trạng thái và evidence vào tài liệu init: `complete` khi đã kiểm chứng đầy đủ, `configured-unverified` nếu chỉ thiếu preview, `blocked` nếu thiếu resource/quyền/đầu vào, hoặc `skipped` nếu không có khả năng hiện có. Ghi cụ thể mismatch còn lại. Không chuyển sang section tiếp theo khi section hiện tại vẫn còn việc khả thi trong phạm vi. Khi bị chặn bên ngoài, ghi và báo chặn rồi mới tiếp tục section độc lập; không tuyên bố section đó hoàn tất.
 
 ## 5. Kiểm tra tổng thể và bàn giao
+
+Khi có quyền preview, áp dụng [Xác minh local và Editor](references/preview-verification.md). Theme Check pass, cổng mở hoặc CLI in link không chứng minh bản remote đã nhận đủ template/config. Không kết luận lỗi cache hoặc sai theme khi chưa đối chiếu evidence.
 
 Kiểm tra toàn trang theo cả desktop/mobile, thứ tự Header/template/Footer, style guide, schema/resource reference và các section lặp. Chạy Theme Check theo AGENTS.md và kiểm tra diff: chỉ cấu hình/preset/composition, tài liệu init và file khởi tạo repo bắt buộc; không có thay đổi implementation ngoài ý muốn. Báo rõ check không thể chạy và nguyên nhân.
 
