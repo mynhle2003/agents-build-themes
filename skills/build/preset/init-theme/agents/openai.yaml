@@ -1,0 +1,4 @@
+interface:
+  display_name: "Init Theme"
+  short_description: "Khởi tạo theme từ Figma bằng preset và media có sẵn"
+  default_prompt: "Dùng $init-theme để khởi tạo hoặc tiếp tục theme từ ba nguồn Figma đã cung cấp; tìm phiên Figma Inspect hiện có nếu MCP bị chặn, khảo sát toàn trang rồi chỉnh current trong config/settings_data.json local bằng Theme Settings hiện có theo Figma, giữ saved presets và kiểm tra ảnh hưởng dùng chung; hoàn thiện style guide, preset và media từng section mà không custom implementation."

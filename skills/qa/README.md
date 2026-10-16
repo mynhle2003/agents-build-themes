@@ -6,4 +6,6 @@ Chưa xây SKILL.md hoặc agent QA. Không cài như skill đang hoạt động
 
 Các skill build vẫn phải chạy kiểm tra phù hợp với thay đổi; không được coi QA chưa xây là lý do bỏ validation.
 
+QA mọi theme phải kiểm tra [thứ tự nhóm Theme Editor](references/section-qa-baseline.md#theme-editor-thứ-tự-nhóm): **Header → Template → Footer → Overlay**, cùng tên nhóm/section theo base `main`.
+
 QA mọi theme variant phải kiểm tra [category trong Add section theo base `main`](references/section-qa-baseline.md#add-section-category-theo-base-main), kể cả section riêng của theme và preset vừa đồng bộ từ template.

@@ -1,4 +1,4 @@
 interface:
   display_name: "Build Preset"
   short_description: "Cấu hình preset từ section và block có sẵn."
-  default_prompt: "Dùng $build-preset để cấu hình preset/template trong file local từ Figma bằng section và block hiện có; media dùng URL/reference hoặc handle từ store, không sửa preset trên store khi chưa được cho phép rõ ràng, rồi báo các chênh lệch còn lại."
+  default_prompt: "Dùng $build-preset để cấu hình preset/template và current trong config/settings_data.json local từ Figma bằng setting ID hiện có, giữ nguyên saved presets và kiểm tra ảnh hưởng toàn theme; cấu hình composition bằng section và block hiện có; media dùng URL/reference hoặc handle từ store, không sửa preset trên store khi chưa được cho phép rõ ràng. Với section/block có hotspot, đọc references/hotspots.md, đo tâm chấm và đối chiếu crop trên web desktop/mobile; focal point thuộc media store. Giữ tên section gốc cho preset Figma hiện tại, không thêm tiền tố theme/số thứ tự; chỉ giữ tên riêng khi được yêu cầu. Tên có (custom) dùng Custom section và đăng ký preset trong Add section của template đích. Báo các chênh lệch còn lại."

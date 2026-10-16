@@ -28,10 +28,12 @@ Xử lý đúng nhóm dữ liệu người dùng yêu cầu. Audit chỉ đọc;
 
 - Product, variant, stock, swatch, summary, ảnh gallery: [Products](references/products.md).
 - Tag sản phẩm phải khớp đúng Figma theo [Products — Tên và phân loại](references/products.md#tên-và-phân-loại); không tự gắn tag mặc định hoặc tag nội bộ khi tạo sản phẩm.
-- Collection, ảnh và membership: [Collections](references/collections.md).
+- Collection, ảnh và membership: [Collections](references/collections.md). Nếu Figma có View all, áp dụng mục “View all trong thiết kế” để chuẩn bị dữ liệu đủ điều kiện render gốc của theme, không nới điều kiện để bù catalog thiếu. Khi setup theo Figma có hiển thị số product của collection, phải bổ sung sản phẩm phù hợp và xác minh số đếm thực tế khớp thiết kế; không chỉ upload ảnh rồi để collection trống.
 - Blog riêng theo template, bài viết và publication: [Blogs](references/blogs.md).
 - Chuyển/upload ảnh AVIF và giới hạn CDN: [Images](references/images-avif.md).
+- Section/block có hotspot: đọc [Hotspot: tọa độ, crop và focal point store](../../build/preset/build-preset/references/hotspots.md). Khi setup media trong phạm vi được yêu cầu, lưu focal point ảnh mặc định 50% 50% tại Shopify Files/media (trừ chỉ định khác), reload/readback và đối chiếu web desktop/mobile; tọa độ hotspot thuộc preset/template local. Khi cài skill phẳng, đọc `.agents/skills/build-preset/references/hotspots.md`.
 - SVG icon giao diện không phải media cần upload; xử lý bằng snippet theo [quy tắc icon của build-theme](../../build/new/build-theme/references/foundation.md#icon-figma-và-svg), không thêm SVG icon vào theme `assets/`.
+- Social có trong Figma nhưng thiếu URL: áp dụng quy tắc [`Social trong preset và icon riêng của theme`](../../build/preset/build-preset/SKILL.md#social-trong-preset-và-icon-riêng-của-theme): dùng `#` trong cấu hình local, giữ URL thật đã có; icon social Figma là custom của theme và phải ghi custom record, không upload như media.
 - Video Figma, Shopify Files và gắn preset/instance local: [Video](references/figma-video-to-preset.md).
 
 Mặc định catalog hiện tại: ít nhất 4 ảnh mỗi product, 20 đơn vị mỗi variant demo còn hàng tại location đã xác nhận, blog riêng mang tên template. Giá gốc/khuyến mãi cần nguồn; không bịa giá thiếu. Stock/demo default không áp vào stock đang vận hành. Quy tắc mới lấy từ `docs/content-creation-workflow.md` local ngày 07/10/2026, thay mốc 100 và blog dùng hậu tố của skill cũ.

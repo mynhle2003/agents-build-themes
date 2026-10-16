@@ -9,6 +9,7 @@ skills/
   build/
     new/build-theme/                 Build implementation mới
     preset/
+      init-theme/                    Khởi tạo theme/worktree từ Figma, không custom
       build-preset/                  Build preset/composition có sẵn
       theme-style-guide/             Cấu hình Theme Settings từ Figma
   update-base/                       Bổ sung skill sau

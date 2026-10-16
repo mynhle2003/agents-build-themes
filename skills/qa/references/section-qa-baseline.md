@@ -14,6 +14,15 @@ Before handoff, run a matrix across context, breakpoint, content state, and edit
 
 Release only when schema, editor behavior, storefront behavior, accessibility, responsive behavior, and runtime lifecycle all pass. Record any accepted exception with its owner and release impact before using the section as a catalogue reference.
 
+## Theme Editor: thứ tự nhóm
+
+Áp dụng cho QA mọi theme và variant: sidebar phải theo thứ tự **Header → Template → Footer → Overlay**.
+
+- Kiểm tra `layout/theme.liquid`: render `header-group`, rồi `content_for_layout` trong main content, tiếp theo `footer-group`, cuối cùng `overlay-group`. Giữ tên nhóm và tên schema section tương ứng với base `main`, kể cả key dịch; không dùng tên như `Overlay group` nếu base là `Overlay`.
+- Kiểm tra cả thời điểm Liquid thực thi trong Theme Editor, không chỉ vị trí HTML đầu ra. Không đọc/render `content_for_layout` trước Header trong design mode để lấy preload hoặc dò module. Nếu storefront cần đọc sớm, bảo vệ nhánh đó bằng điều kiện loại trừ `request.design_mode`, theo cách của base `main`. Không capture section group ở đầu layout chỉ để ép thứ tự sidebar.
+- Mở Theme Editor, kiểm tra thứ tự và tên nhóm trên template đích sau save/reload và khi chuyển template; kiểm tra add/remove/reorder section vẫn thuộc đúng nhóm. Sửa thứ tự nhóm không được làm mất composition, resource, animation policy hoặc hành vi drawer/overlay hiện có.
+- Gate fail khi nhóm sai thứ tự hoặc tên lệch base không có yêu cầu riêng. Evidence ghi template đã kiểm tra, thứ tự quan sát được và ảnh chụp nếu có. Schema validation/Theme Check và kiểm tra thứ tự trong source không thay thế xác minh sidebar; nếu chưa mở Theme Editor, ghi rõ chỉ xác minh local và runtime chưa kiểm tra.
+
 ## Add section: category theo base `main`
 
 Áp dụng cho QA mọi theme variant, kể cả khi build hoặc đồng bộ preset từ template.
