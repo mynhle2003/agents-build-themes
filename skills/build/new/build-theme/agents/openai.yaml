@@ -1,4 +1,4 @@
 interface:
   display_name: "Build Theme"
   short_description: "Build nền theme, section và block theo contract."
-  default_prompt: "Dùng $build-theme để xây hoặc cập nhật implementation theme theo foundation và contract của repo đích."
+  default_prompt: "Dùng $build-theme để xây hoặc cập nhật implementation theme theo foundation và contract của repo đích. Khi cần Figma, áp dụng contract figma-access của theme-style-guide: dùng MCP trước, chờ Accept nếu cần; hết quota thì tự dùng CUA kiểm tra đúng link trên Chrome đang mở, xác minh profile minhle@beae.com theo contract chung."

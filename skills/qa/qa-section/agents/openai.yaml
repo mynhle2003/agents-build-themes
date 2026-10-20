@@ -1,0 +1,4 @@
+interface:
+  display_name: "QA Section"
+  short_description: "Đối chiếu layout và màu section với Figma"
+  default_prompt: "Dùng $qa-section kiểm tra section trên desktop/mobile so với các node Figma được cung cấp; đối chiếu layout, ảnh, typography và màu thực tế, báo từng điểm khớp, còn lệch hoặc chưa đủ bằng chứng. Chỉ QA, không tự sửa theme."

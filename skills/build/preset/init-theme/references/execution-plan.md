@@ -19,7 +19,7 @@ Lập một plan tại `docs/theme-init/<slug>.md` trước mutation theme. Tái
 | Chọn mode và nguồn | Người dùng đã chọn new/variant; nguồn và đích không mơ hồ |
 | Tạo worktree | Đúng branch/path, SHA nguồn, hồ sơ; variant có diff code/config ban đầu rỗng so với nguồn |
 | Khảo sát | Khi build: bản đồ Header → homepage → Footer đủ desktop/mobile; clone-only không cần khảo sát Figma |
-| Style Guide | New: mapping bằng chứng → setting → trước/sau, giá trị hợp lệ; variant: `inherited` từ SHA nguồn, bỏ qua đọc/áp lại style |
+| Style Guide | New: manifest đầy đủ nguồn → role/breakpoint → setting/token → trước/sau; shared scale có đủ consumer, range/grid/default/saved values và runtime output đã kiểm tra; thiếu value/token ghi chờ duyệt. Variant: `inherited` từ SHA nguồn, bỏ qua đọc/áp lại style |
 | Chuẩn bị composition | Cả hai mode: backup, đối chiếu layout với preset/instance hiện có, ghi ứng viên và quyết định reuse/change/add/remove; không reset toàn bộ template |
 | Build tuần tự | Mỗi vùng đã cấu hình preset + instance, media readback, validate; blocker không còn việc khả thi thì chuyển vùng độc lập |
 | QA / preview | Theme Check, diff phạm vi, desktop/mobile, local/Editor sync được xác minh hoặc ghi rõ phần chưa kiểm chứng |
@@ -31,8 +31,16 @@ Trạng thái dùng thống nhất: `pending`, `in-progress`, `complete`, `confi
 
 ## Giảm thao tác lặp
 
-- Chọn đường đọc Figma khả dụng một lần; lỗi quota/quyền không retry cho từng node. Đào sâu riêng section đang build, dùng evidence chung đã xác minh cho token/media lặp.
+- Dùng Figma MCP theo [contract cấp quyền](../../theme-style-guide/references/figma-access.md); lưu trạng thái kết nối/Accept và evidence, không lưu credential. Hết quota thì tự dùng CUA trên Chrome đang mở với profile `minhle@beae.com` đã xác minh theo contract; ghi nguồn UI và evidence. Lỗi quota/quyền không retry cho từng node. Đào sâu riêng section đang build, dùng evidence chung đã xác minh cho token/media lặp.
 - Media theo dependency: reuse trước create, lưu ID sau mutation rồi readback; timeout chưa rõ kết quả thì tra ID/ledger trước retry. Video dùng reference video của store, không poster hoặc URL export tạm.
 - Export bị chủ file tắt: hỏi một lần, ghi quyết định; không tải qua đường khác. Dựng phần Inspect độc lập, giữ draft bị tắt nếu thiếu media làm kết quả sai.
 - Countdown có số mẫu: dùng mode duration nếu người dùng chọn; ghi duration thực tế theo control, không chuyển sang ngày hết hạn giả. Thiếu giá trị duration cần hỏi hoặc giữ default và ghi chưa xác nhận.
 - Sau ngắt/reconnect: đọc plan, Git diff và resource pending trước làm tiếp; không tạo lại branch, reset template hay upload lại tài nguyên đã READY.
+
+## Evidence cho Style Guide
+
+Dùng [contract config chung](../../theme-style-guide/references/config-theme-settings.md). Lưu URL Style Guide, frame Eyebrow và một product card khi có xử lý style tương ứng; thiếu URL thì hỏi, không suy dữ liệu hay chốt scale global. Biến thể kế thừa không cần hỏi các nguồn này trừ khi người dùng yêu cầu đổi style.
+
+Ghi raw px/%/em, số chuẩn hóa và số px runtime cho mọi consumer của scale. Với range/mapping hiện hữu, lưu file và trước/sau, grid/default/dữ liệu saved, consumer bị ảnh hưởng và kiểm chứng tương thích. Được căn chỉnh phần này, nhưng thêm select value/token phải có đề xuất và câu trả lời duyệt; không tạo setting mới. Font weight cần node nguồn Heading/Body/Eyebrow → font handle/biến thể picker → role token → computed weight của mọi consumer; thiếu font/variant/control thì ghi gap, không bù CSS. Body cần node Body/16 – Body text → raw tracking/size → primitive chung → `--font-body-letter-spacing` → px runtime của Body và Price kế thừa. Ghi declaration override tracking được sửa nếu có; xác minh font/size riêng của Price vẫn đúng, gồm scope PDP/cart chịu tác động. Tracking khác Figma thì ghi gap, không tự thêm control/scale riêng. Generated cần Heading HEX seed, cấp N, HEX output và field nhận màu. Button cần evidence desktop/mobile của height, padding, gap và underline/offset Tertiary. Thiếu preview thì giữ trạng thái configured-unverified thay vì khẳng định khớp Figma.
+
+Compare-at custom theo mục 6.4.2 phải ghi fill/alpha/opacity, size compare-at/cha, ratio em, token/declaration/file/scope trước–sau và ảnh hưởng card/PDP/cart. Khi thiếu option, ba thuộc tính color/font-size/opacity hiện hữu được phép custom; không thêm setting/token/selector/breakpoint. Variant kế thừa bỏ qua trừ khi có yêu cầu đổi style.

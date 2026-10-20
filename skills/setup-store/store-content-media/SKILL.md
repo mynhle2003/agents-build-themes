@@ -7,6 +7,10 @@ description: "Create or update Shopify store products, variants, collections, bl
 
 Xử lý đúng nhóm dữ liệu người dùng yêu cầu. Audit chỉ đọc; yêu cầu tạo/cập nhật/gắn cho phép làm phần đó trên đích đã xác định. Tạo skill hoặc lập kế hoạch không cho phép ghi dữ liệu store.
 
+## Truy cập Figma
+
+Khi cần dữ liệu Figma, bắt buộc áp dụng [Figma MCP và cấp quyền tài khoản](../../build/preset/theme-style-guide/references/figma-access.md) trước khi đọc thiết kế/asset. Với bản cài phẳng, đọc `.agents/skills/theme-style-guide/references/figma-access.md`; thiếu dependency thì báo thiếu, không tự chọn cách truy cập khác.
+
 ## Ranh giới store content và preset local
 
 - Preset/composition chỉ được chỉnh trong file repo: `presets` của section schema, `templates/*.json` hoặc section-group JSON đúng phạm vi. Không tạo luồng chỉnh/lưu preset hay template trực tiếp trên store bằng Shopify bot, connector/API hoặc thao tác Theme Editor nếu chưa có cho phép rõ ràng của người dùng dành riêng cho thao tác đó.

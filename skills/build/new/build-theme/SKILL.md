@@ -9,6 +9,10 @@ Dùng khi xây mới hoặc sửa implementation trong repo theme có foundation
 
 Đọc và áp dụng [Ưu tiên option trước CSS custom](references/foundation.md#ưu-tiên-option-trước-css-custom) cho build, rebuild, custom, fix và tối ưu trước khi chọn cách sửa.
 
+## Truy cập Figma
+
+Khi cần dữ liệu Figma, bắt buộc áp dụng [Figma MCP và cấp quyền tài khoản](../../preset/theme-style-guide/references/figma-access.md) trước khi đọc thiết kế/asset. Với bản cài phẳng, đọc `.agents/skills/theme-style-guide/references/figma-access.md`; thiếu dependency thì báo thiếu, không tự chọn cách truy cập khác.
+
 ## Preflight
 
 

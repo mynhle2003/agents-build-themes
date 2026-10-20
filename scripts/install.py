@@ -21,7 +21,7 @@ def fingerprint(folder):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('repo', type=Path)
-    parser.add_argument('--group', choices=['build', 'setup-store'])
+    parser.add_argument('--group', choices=['build', 'qa', 'setup-store'])
     parser.add_argument('--dry-run', action='store_true')
     args = parser.parse_args()
     repo = args.repo.expanduser().resolve()

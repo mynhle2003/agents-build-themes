@@ -1,6 +1,6 @@
-# Checklist nền cho skill QA tương lai
+# Checklist QA section đầy đủ
 
-Trích từ build-theme local. Đây là tài liệu tham khảo, chưa phải skill hoặc kết quả QA.
+Trích từ build-theme local, dùng bổ sung cho qa-section khi kiểm tra editor/hành vi/release. Đây là checklist tham khảo, không phải kết quả QA.
 
 ## Section QA and release gate
 
