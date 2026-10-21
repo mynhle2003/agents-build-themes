@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shopify Block Animation Presets"
+  short_description: "Set existing animation presets using industry references"
+  default_prompt: "Use $shopify-block-animation-presets to research 5–6 popular Shopify themes in this industry and configure supported animation presets across blocks, sections, and templates without changing implementation code."

@@ -12,6 +12,7 @@ skills/
       init-theme/                    Khởi tạo theme/worktree từ Figma, không custom
       build-preset/                  Build preset/composition có sẵn
       theme-style-guide/             Cấu hình Theme Settings từ Figma
+      shopify-block-animation-presets/ Cấu hình animation bằng preset, tham khảo theme cùng ngành
   update-base/                       Bổ sung skill sau
   qa/
     qa-section/                      QA layout/màu section so với Figma
