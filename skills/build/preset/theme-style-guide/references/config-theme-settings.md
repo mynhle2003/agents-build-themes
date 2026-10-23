@@ -14,6 +14,8 @@ Các giới hạn sau có ưu tiên cao hơn mọi ví dụ, bảng mapping ho�
 4. Sửa **runtime mapping của setting hiện có** trong Liquid/CSS để lựa chọn đó điều khiển đúng token/output, gồm resolver hoặc binding trong consumer đã có. Không cần hỏi lại riêng cho range/runtime mapping trong phạm vi này.
 5. Riêng **theme-style-guide và bước Style Guide của init-theme**, được custom ba thuộc tính hiện hữu của `.price__compare-at` khi chưa có option tương ứng: color, font-size và opacity theo mục 6.4.2. Đây là ngoại lệ đã được người dùng cho phép, không cần hỏi lại quyền cho đúng ba thuộc tính này.
 
+6. Riêng **theme-style-guide và bước Style Guide của init-theme**, được custom `line-height` trong rule Button Tertiary hiện hữu khi thiếu control tương ứng, theo mục 6.3.1; ngoại lệ này không mở rộng sang Primary/Secondary hay các thuộc tính hình học khác.
+
 Giá trị đã khớp thì **bỏ qua**, không ghi lại, không chuẩn hóa tên hoặc refactor cho đẹp.
 
 **Không được tự ý:**
@@ -177,6 +179,15 @@ Các hậu tố/ID trong bảng là mẫu tra cứu, không phải yêu cầu t�
 - Badge: phân biệt Sale/Sold out/New, đọc label thay vì khung màu. Không đổi badge color khi chỉ config Typography.
 - Letter spacing của cả hai nhóm chọn từ cùng scale chung. Nếu select chưa có lựa chọn cần dùng, hỏi trước khi thêm value; không thêm option mới. Range cần mở rộng thì xử lý theo mục 1.1.
 - Giữ `--badge-letter-spacing`; không đổi sang lỗi chính tả `--badge-letting-spacing` của theme mẫu.
+
+### 6.3.1. Ngoại lệ line-height Button Tertiary
+
+Người dùng đã cho phép custom CSS riêng `line-height` của Tertiary để khớp Figma khi theme chưa có control tương ứng. Đọc line-height của **label Tertiary**, không lấy chiều cao cả nút gồm underline/gap. Chuẩn hóa px hoặc % thành tỷ lệ không đơn vị: label14px/21px → `1.5`; đây là bằng chứng Kinetra/Virelle, không phải mặc định cho mọi theme.
+
+- Sửa đúng declaration trong rule Tertiary hiện hữu, dùng token chung đã có nếu khớp giá trị và không làm thay đổi consumer khác. Không thêm setting, enum, token, selector, inline/custom_css hoặc `!important`.
+- Không áp line-height Tertiary lên `.btn` chung hay Primary/Secondary chỉ vì dùng cùng font. Giữ min-height, padding, font/weight/tracking, màu, icon, underline offset/space và breakpoint hiện hữu.
+- Kiểm tra label desktop/mobile, normal/hover/focus, có/không icon và underline bật/tắt; đo lại khung nút sau khi label thay đổi. Phân biệt lỗi hình học còn lại với hệ quả của line-height.
+- Ghi nguồn node/breakpoint, font-size, line-height Figma, tỷ lệ, rule/file và output trước/sau. Chưa đo preview thì ghi `configured-unverified`; không đổi style đã khớp.
 
 ### 6.4. Product card title và Product card price
 
