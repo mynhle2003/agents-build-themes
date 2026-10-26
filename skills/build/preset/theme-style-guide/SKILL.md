@@ -9,6 +9,10 @@ description: "Config Shopify Theme Settings theo Figma bằng settings_data.json
 
 Trước mutation, đọc mục 1–4 của hướng dẫn chung. Đây là nguồn contract duy nhất cho config của skill này, bước Style Guide của init-theme và Theme Settings của build-preset. Quyền range/runtime mapping bên dưới đã được cấp cho config; không viết CSS giá riêng hoặc kế thừa ngoại lệ SVG/custom implementation từ skill khác.
 
+## Tab và group Google Chrome
+
+Khi dùng Chrome cho task, bắt buộc áp dụng [vòng đời tab/group dùng chung](../../../../references/browser-session.md). Bản cài phẳng đọc `references/browser-session.md` trong chính thư mục skill này.
+
 ## Truy cập Figma
 
 Khi cần dữ liệu Figma, bắt buộc áp dụng [Figma MCP và cấp quyền tài khoản](references/figma-access.md) trước khi đọc thiết kế/asset. Với bản cài phẳng, đọc `.agents/skills/theme-style-guide/references/figma-access.md`; thiếu dependency thì báo thiếu, không tự chọn cách truy cập khác.
@@ -73,3 +77,7 @@ Thu thập đủ mọi setting/consumer dùng chung trước khi gán trị số
 - Bảng kết quả ghi node/breakpoint/scheme, setting ID, token/file/scope, trước/sau và trạng thái `matched-skip`, `configured-unverified`, `verified`, `missing-evidence` hoặc `awaiting-approval`. Chỉ ghi `verified` sau khi đối chiếu output. Nêu rõ consumer chung và value/token mới nào đã được duyệt; không đánh đồng plan với code đã hỗ trợ.
 - Chạy `shopify theme check --path . --fail-level error --no-color` nếu CLI có sẵn; báo kết quả hoặc lý do chưa chạy được.
 - Báo các giá trị đã đổi, thuộc tính bỏ qua và giới hạn runtime còn lệch Figma. Không tuyên bố khớp hoàn toàn khi mới kiểm tra cấu hình, chưa kiểm tra storefront.
+
+## File output/test và commit
+
+Bắt buộc áp dụng [quy tắc loại trừ và dọn file kiểm tra](../../../../references/task-artifacts.md) khi tạo output/test hoặc chuẩn bị commit. Bản cài phẳng đọc `references/task-artifacts.md` trong chính thư mục skill này.

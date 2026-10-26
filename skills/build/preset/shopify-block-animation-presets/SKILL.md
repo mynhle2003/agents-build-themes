@@ -7,6 +7,10 @@ description: Configure existing Shopify theme animation presets and delays acros
 
 Interpret requests such as “tạo animation cho theme”, “gắn animation”, or “set animation preset” as configuring existing supported animation settings throughout the target theme. Every eligible block with an Animation group must receive an explicit non-None preset effect, except documented exclusions or a competing existing effect. Do not limit the work to two familiar block types, merely add controls, or leave eligible presets at None.
 
+## Tab và group Google Chrome
+
+Khi dùng Chrome cho task, bắt buộc áp dụng [vòng đời tab/group dùng chung](../../../../references/browser-session.md). Bản cài phẳng đọc `references/browser-session.md` trong chính thư mục skill này.
+
 ## Preset-only boundary
 
 Allowed edits are animation setting values in block schema `presets`, section schema `presets` (including nested/static block configurations), and existing JSON template section/block settings. Liquid files may be edited only inside those preset configuration objects. Preserve unrelated settings, content, IDs, ordering, and layout.
@@ -42,3 +46,7 @@ Audit all eligible preset/template instances: no missing or None animation outsi
 Parse changed schema/JSON, run relevant existing tests and full `shopify theme check --fail-level error`, and review `git diff --check`. Do not add implementation tests or repair runtime as part of this preset-only task. Check desktop/mobile and Theme Editor behavior when an accessible preview exists; report unavailable visual checks separately. If verification exposes an implementation defect, report it and use a supported safe preset where possible.
 
 Report the reference themes, chosen effect/delay approach, coverage, exceptions, and actual validation results. This skill does not authorize commit, push, deployment, or publication.
+
+## File output/test và commit
+
+Bắt buộc áp dụng [quy tắc loại trừ và dọn file kiểm tra](../../../../references/task-artifacts.md) khi tạo output/test hoặc chuẩn bị commit. Bản cài phẳng đọc `references/task-artifacts.md` trong chính thư mục skill này.

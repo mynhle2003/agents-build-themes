@@ -11,3 +11,5 @@ Các skill build vẫn phải chạy kiểm tra phù hợp với thay đổi; kh
 Khi QA Theme Editor, kiểm tra [thứ tự nhóm](qa-section/references/section-qa-baseline.md#theme-editor-thứ-tự-nhóm): **Header → Template → Footer → Overlay**, cùng tên nhóm/section theo base `main`.
 
 Khi QA preset/Add section, kiểm tra [category theo base `main`](qa-section/references/section-qa-baseline.md#add-section-category-theo-base-main), kể cả section riêng của theme và preset vừa đồng bộ từ template. Chưa mở editor phải ghi chưa xác minh runtime.
+
+[fix-qa-preset](fix-qa-preset/SKILL.md) xử lý yêu cầu **Fix lần 1**: chỉ preset/config local, QA hồi quy toàn phạm vi, giữ dòng lỗi QA1 và chèn lỗi mới QA2 đúng section. Không kích hoạt sửa theme khi chỉ QA hoặc huấn luyện skill. Cần dependency build-preset từ nhóm build.

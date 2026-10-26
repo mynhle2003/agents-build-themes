@@ -42,14 +42,26 @@ def main():
     pending = []
     conflicts = []
     names = set()
+    shared_references = {
+        'references/' + name: package / 'references' / name
+        for name in ('browser-session.md', 'task-artifacts.md')
+    }
+    shared_hashes = {
+        key: hashlib.sha256(path.read_bytes()).hexdigest()
+        for key, path in shared_references.items()
+    }
     for entry in entries:
         skill = entry.parent
         if skill.name in names:
             parser.error('Duplicate skill directory name: ' + skill.name)
         names.add(skill.name)
         target = destination / skill.name
+        expected = fingerprint(skill)
+        if expected is None or any(key in expected for key in shared_references):
+            parser.error('Invalid skill or bundled reference collision: ' + str(skill))
+        expected.update(shared_hashes)
         if target.exists() or target.is_symlink():
-            if fingerprint(skill) == fingerprint(target):
+            if expected == fingerprint(target):
                 print('UNCHANGED ' + str(target))
             else:
                 conflicts.append(target)
@@ -65,6 +77,9 @@ def main():
         destination.mkdir(parents=True, exist_ok=True)
         for skill, target in pending:
             shutil.copytree(skill, target)
+            (target / 'references').mkdir(exist_ok=True)
+            for key, path in shared_references.items():
+                shutil.copy2(path, target / key)
 
 
 if __name__ == '__main__':

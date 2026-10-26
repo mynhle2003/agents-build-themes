@@ -20,4 +20,4 @@
 - Gắn tag phù hợp nếu có yêu cầu. Bổ sung SEO title/meta description phù hợp nội dung, không nhồi từ khóa.
 - Đặt trạng thái đăng bài theo yêu cầu. Bài cần xuất hiện ngay trên homepage demo phải khả dụng ở thời điểm kiểm tra; không dùng ngày đăng tương lai khiến card trống.
 - Ghi handle/reference blog/article vào setting resource mà section hỗ trợ trong preset/template local. Nếu section lấy bài theo thứ tự blog, kiểm tra thứ tự/ngày đăng để bài featured và bài phụ hiển thị đúng; không sửa dữ liệu bài cũ ngoài phạm vi để ép thứ tự.
-- Kiểm tra ảnh, title, excerpt, tác giả/ngày nếu bật, link card, trang bài viết và nút View all với dữ liệu thật.
+- Kiểm tra ảnh, title, excerpt, tác giả/ngày nếu bật, link card, trang bài viết và nút View all với dữ liệu thật. Khi bàn giao theo Figma, áp dụng [kiểm đầu ra media/card](../../../build/preset/build-preset/references/rendered-output.md): kiểm cover article thực sự render, crop/zoom và vị trí chủ thể ở từng card trên desktop/mobile; Files đúng nguồn không chứng minh article cover đã khớp.

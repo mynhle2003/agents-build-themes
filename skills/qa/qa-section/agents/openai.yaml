@@ -1,4 +1,4 @@
 interface:
   display_name: "QA Section"
   short_description: "Đối chiếu layout và màu section với Figma"
-  default_prompt: "Dùng $qa-section kiểm tra section trên desktop/mobile so với các node Figma được cung cấp; đối chiếu layout, ảnh, typography và màu thực tế, báo từng điểm khớp, còn lệch hoặc chưa đủ bằng chứng. Chỉ QA, không tự sửa theme."
+  default_prompt: "Dùng $qa-section kiểm tra section trên desktop/mobile so với các node Figma được cung cấp; đối chiếu layout, ảnh, typography và màu thực tế, báo từng điểm khớp, còn lệch hoặc chưa đủ bằng chứng. Chỉ QA, không tự sửa theme. Khi dùng Chrome, theo contract browser-session: ghi checkpoint tab/group của task, dùng lại sau khôi phục ngữ cảnh và cleanup khi hoàn tất. Mỗi section của page một file QA ổn định; kết quả mới nhất ở đầu, gộp lịch sử các lượt QA/fix vào cùng file theo contract qa-section/references/qa-report-files.md. Theo contract task-artifacts: loại output/test tạm khỏi commit và dọn delta do task tạo khi hoàn tất, giữ thay đổi có sẵn và hồ sơ được yêu cầu lưu."

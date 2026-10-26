@@ -7,6 +7,10 @@ description: "Khởi tạo Shopify theme mới từ main hoặc theme biến th�
 
 Khởi tạo theme mới từ base hoặc theme biến thể từ theme đã có rồi dựng Header → template homepage → Footer theo Figma. Khảo sát toàn trang trước; sau đó hoàn thiện layout, content/media và đối chiếu desktop/mobile của từng section trước khi chuyển section tiếp theo. Đây là workflow cấu hình bằng khả năng hiện có; được kế thừa implementation của theme nguồn, không tạo implementation mới trong init. Riêng Style Guide được căn chỉnh giá trị CSS token, range và runtime mapping hiện hữu theo contract dùng chung bên dưới.
 
+## Tab và group Google Chrome
+
+Khi dùng Chrome cho task, bắt buộc áp dụng [vòng đời tab/group dùng chung](../../../../references/browser-session.md). Bản cài phẳng đọc `references/browser-session.md` trong chính thư mục skill này.
+
 ## Truy cập Figma
 
 Khi cần dữ liệu Figma, bắt buộc áp dụng [Figma MCP và cấp quyền tài khoản](../theme-style-guide/references/figma-access.md) trước khi đọc thiết kế/asset. Với bản cài phẳng, đọc `.agents/skills/theme-style-guide/references/figma-access.md`; thiếu dependency thì báo thiếu, không tự chọn cách truy cập khác.
@@ -26,6 +30,14 @@ Khi gọi skill để khởi tạo, **hỏi rõ “Tạo theme mới hay theme b
 Khi được yêu cầu **chạy** init theme, xác định mode ở trên và hỏi tên theme đích nếu chưa cung cấp. **Theme mới** cần đủ ba link Figma có node/frame cụ thể: style guide, homepage desktop, homepage mobile. **Biến thể** hỏi tên đích, theme nguồn và **hai link Figma homepage desktop/mobile** có node/frame cụ thể; không hỏi hoặc đọc Figma Style Guide. Kế thừa nguyên Style Guide đã cấu hình mà không yêu cầu xác nhận dùng chung. Hỏi gộp phần còn thiếu, không hỏi lại dữ liệu đã có. Nếu thiếu link layout, vẫn có thể chuẩn bị branch/worktree từ nguồn đã xác định nhưng chưa build phần thiếu bằng chứng; thiếu store chỉ chặn content/media mutation. Ngoại lệ clone-only chỉ áp dụng khi người dùng nói rõ chỉ sao chép/tạo nhánh, chưa build design. Chỉ rà Style Guide khi có yêu cầu riêng đổi style. Tái sử dụng dữ liệu đã cung cấp, không hỏi lại. Xác định store đích khi có content/media work; không suy store từ profile minh họa. Thiếu store vẫn làm phần local, chưa mutation store. Không tự coi desktop là bằng chứng mobile.
 
 Yêu cầu tạo/sửa **skill này** không phải yêu cầu chạy init: không hỏi tên theme, tạo branch/worktree hay upload store trong lúc bảo trì skill.
+
+## Hồ sơ QA tạo ngay khi init
+
+Khi đã có worktree đích và link Figma homepage, tạo sớm file tổng quan `docs/qa/homepage-qa.md` (tái sử dụng `check-perfect-homepage.md` nếu đã có) từ [mẫu hồ sơ QA](assets/qa-homepage.md), không chờ build xong hoặc đến khi gọi skill check. Điền link desktop/mobile đúng node, theme/worktree, scope homepage, Style Guide đã có hoặc nguồn kế thừa, preview/Sheet nếu đã được cung cấp và checkpoint init. Thiếu preview hoặc Sheet ghi chưa cung cấp, không chặn init hay tự tạo Google Sheet. Biến thể chỉ lưu nguồn Style Guide kế thừa, không yêu cầu link/đọc lại Style Guide. Clone-only không có yêu cầu build/Figma không bị buộc tạo hồ sơ QA giả. Khi bắt đầu QA, mỗi section có một file ổn định và gộp mọi lượt kiểm tra/fix theo [hồ sơ QA theo section](../../../qa/qa-section/references/qa-report-files.md); tổng quan chỉ giữ mục lục, nguồn và checkpoint chung. Bản cài phẳng đọc `qa-section/references/qa-report-files.md` trong thư mục skills.
+
+Đọc [mẫu định dạng Sheet QA](../../../qa/qa-theme-pixel-perfect/assets/sheet-style.json) và [quy tắc báo cáo](../../../qa/qa-theme-pixel-perfect/references/sheet-report.md), ghi snapshot cột/width, font, header, wrap/merge, dropdown/màu và nguồn cuối bảng vào file Markdown để dùng lại khi gọi check. Nếu mẫu còn draft, ghi đúng trạng thái và tạo/giữ `docs/qa/sheet-style-tracker.md` để theo dõi các yêu cầu style; không coi mẫu là bất biến. Khi bắt đầu QA trên Sheet/tab mới đã được giao, áp dụng style hiện hành ngay bước0 qua API; không chờ cuối page hoặc chốt lại style đã được chấp nhận. Đọc [workflow API Sheet](../../../qa/qa-theme-pixel-perfect/references/sheet-api-workflow.md), lưu path/version của mẫu vào hồ sơ khởi tạo để skill check tái sử dụng. Bản cài phẳng tìm dependency `qa-theme-pixel-perfect` trong `.agents/skills/`; thiếu thì lưu nguồn hiện có, ghi thiếu dependency định dạng, không bịa đã áp dụng mẫu. Placeholder của file mẫu phải được thay bằng dữ liệu thật hoặc trạng thái thiếu cụ thể, không để nguyên trong hồ sơ đích.
+
+Khi tiếp tục init, cập nhật trường nguồn/checkpoint liên quan trong hồ sơ QA đã có, giữ kết quả QA, quy ước được chấp nhận, hướng xử lý và nguồn mới hơn. Không ghi đè toàn bộ file bằng mẫu hoặc coi kiểm chứng build là QA hoàn tất. Khi người dùng gọi check, hướng skill `qa-theme-pixel-perfect` đọc hồ sơ này để tái sử dụng link/định dạng; không hỏi lại dữ liệu đã lưu. Việc tạo hồ sơ không tự chạy QA đầy đủ, không tự ghi cloud Sheet hoặc thay đổi sharing.
 
 ## Skill phụ thuộc và giới hạn ưu tiên
 
@@ -137,3 +149,7 @@ Khi có quyền preview, áp dụng [Xác minh local và Editor](references/prev
 Kiểm tra toàn trang theo cả desktop/mobile, thứ tự Header/template/Footer, style guide, schema/resource reference và các section lặp. Chạy Theme Check theo AGENTS.md và kiểm tra diff: chỉ cấu hình/preset/composition, tài liệu init, file khởi tạo repo bắt buộc và phần token/range/runtime mapping và ngoại lệ compare-at Style Guide đã nêu trong contract. Kiểm tra grid range, default/saved values, output resolver và mọi consumer; select value/token mới phải có phê duyệt tương ứng. Không có implementation ngoài phạm vi. Báo rõ check không thể chạy và nguyên nhân.
 
 Bàn giao branch, đường dẫn worktree tuyệt đối, file thay đổi, section/block đã dùng, content/media đã upload/reuse và trạng thái deploy. Liệt kê riêng từng section bỏ qua, gap, phần bị chặn hoặc chưa xem preview; nêu control/section/block còn thiếu. Không khẳng định khớp Figma hoàn toàn nếu còn gap hoặc chỉ kiểm tra local. Không commit/push/publish thêm nếu chưa có yêu cầu.
+
+## File output/test và commit
+
+Bắt buộc áp dụng [quy tắc loại trừ và dọn file kiểm tra](../../../../references/task-artifacts.md) khi tạo output/test hoặc chuẩn bị commit. Bản cài phẳng đọc `references/task-artifacts.md` trong chính thư mục skill này.

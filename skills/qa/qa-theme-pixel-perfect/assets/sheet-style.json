@@ -1,0 +1,278 @@
+{
+  "version": 5,
+  "state": "working-default",
+  "finalRenderRequiresUserStyleSignoff": false,
+  "columns": [
+    {
+      "key": "stt",
+      "label": "STT",
+      "widthPx": 56
+    },
+    {
+      "key": "section",
+      "label": "Section",
+      "widthPx": 141
+    },
+    {
+      "key": "device",
+      "label": "Thiết bị",
+      "widthPx": 151
+    },
+    {
+      "key": "component",
+      "label": "Thành phần",
+      "widthPx": 191
+    },
+    {
+      "key": "criterion",
+      "label": "Tiêu chí",
+      "widthPx": 221
+    },
+    {
+      "key": "figma",
+      "label": "Figma",
+      "widthPx": 300
+    },
+    {
+      "key": "current",
+      "label": "Hiện tại",
+      "widthPx": 300
+    },
+    {
+      "key": "resolution",
+      "label": "Hướng xử lý",
+      "widthPx": 301
+    },
+    {
+      "key": "fixRound",
+      "label": "Lần fix",
+      "widthPx": 100,
+      "dropdown": {
+        "values": [
+          "Lần 1",
+          "Lần 2",
+          "Lần 3",
+          "Lần 4",
+          "Lần 5",
+          "Bỏ qua"
+        ],
+        "strict": true,
+        "allowBlank": true,
+        "multiSelect": false,
+        "display": "dropdown-chip",
+        "choices": [
+          {
+            "value": "Lần 1",
+            "background": "#BFE1F6"
+          },
+          {
+            "value": "Lần 2",
+            "background": "#E6CFF2"
+          },
+          {
+            "value": "Lần 3",
+            "background": "#FFC8AA"
+          },
+          {
+            "value": "Lần 4",
+            "background": "#FFE5A0"
+          },
+          {
+            "value": "Lần 5",
+            "background": "#D4EDBC"
+          },
+          {
+            "value": "Bỏ qua",
+            "background": "#E7E6E6"
+          }
+        ],
+        "colorScope": "chip-only; cell background remains empty"
+      }
+    },
+    {
+      "key": "status",
+      "label": "Trạng thái",
+      "widthPx": 140
+    }
+  ],
+  "font": {
+    "family": "Arial",
+    "sizePt": 10
+  },
+  "header": {
+    "background": "#1F4E78",
+    "foreground": "#FFFFFF",
+    "bold": true,
+    "sizePt": 11,
+    "rows": 2,
+    "groups": [
+      {
+        "label": "Nội dung",
+        "range": "F1:G1",
+        "children": [
+          "figma",
+          "current"
+        ]
+      }
+    ],
+    "verticalMerges": [
+      "A1:A2",
+      "B1:B2",
+      "C1:C2",
+      "D1:D2",
+      "E1:E2",
+      "H1:H2",
+      "I1:I2",
+      "J1:J2"
+    ],
+    "horizontalAlignment": "CENTER",
+    "verticalAlignment": "MIDDLE"
+  },
+  "cells": {
+    "wrap": true,
+    "verticalAlignment": "MIDDLE",
+    "rowHeight": "fit-content",
+    "background": null
+  },
+  "deviceBackgrounds": {},
+  "status": {
+    "display": "dropdown-chip",
+    "allowMultiple": false,
+    "choices": [
+      {
+        "value": "Khớp",
+        "background": "#D9EAD3",
+        "foreground": "#274E13"
+      },
+      {
+        "value": "Chưa khớp",
+        "background": "#F4CCCC",
+        "foreground": "#990000"
+      },
+      {
+        "value": "Chưa xác minh",
+        "background": "#FFF2CC",
+        "foreground": "#7F6000"
+      },
+      {
+        "value": "Không áp dụng",
+        "background": "#E7E6E6",
+        "foreground": "#595959"
+      },
+      {
+        "value": "Browser render không khớp",
+        "background": "#CFE2F3",
+        "foreground": "#0B5394"
+      },
+      {
+        "value": "Figma làm tròn",
+        "background": "#E7E6E6",
+        "foreground": "#595959"
+      },
+      {
+        "value": "Bỏ qua",
+        "background": "#E7E6E6",
+        "foreground": "#444444"
+      }
+    ],
+    "scope": "data-rows-only",
+    "cellBackground": null,
+    "colorScope": "dropdown-chip-only; no status-dependent cell fill"
+  },
+  "merge": {
+    "section": [
+      "stt",
+      "section"
+    ],
+    "device": [
+      "device"
+    ],
+    "component": [
+      "component"
+    ],
+    "neverMerge": [
+      "figma",
+      "current",
+      "status",
+      "resolution",
+      "fixRound"
+    ],
+    "criterion": "optional-contiguous-same-criterion-only",
+    "matchedSummary": "horizontal-figma-current-allowed"
+  },
+  "overview": {
+    "stt": 0,
+    "section": "Tổng quan",
+    "device": "Desktop, Mobile",
+    "components": [
+      "Số lượng section",
+      "Thứ tự section",
+      "Width / Padding"
+    ],
+    "compactMatched": false
+  },
+  "layout": {
+    "sectionsContiguous": true,
+    "sourcesAtEnd": true,
+    "footerBackground": null,
+    "spacingComponent": "Layout",
+    "spacingCriteria": [
+      "Gap (child/group pair)",
+      "Padding (container/section)"
+    ],
+    "inspectionOrder": "inside-out: child gaps -> group gaps -> group/section padding",
+    "spacingRows": "mismatches-only; matched-spacing-in-pass-summary",
+    "deviceGroups": [
+      "Chung (Desktop, Mobile)",
+      "Desktop",
+      "Mobile"
+    ]
+  },
+  "comparison": {
+    "rowUnit": "one-mismatch-or-unverified-property-per-row",
+    "listsInCells": false,
+    "attributeLabels": "repeat-short-property-label-in-figma-and-current-cells",
+    "mismatch": {
+      "figmaBackground": "#D9EAD3",
+      "currentBackground": "#F4CCCC"
+    },
+    "matched": "one shared pass summary per section; tag device-specific items (Mobile)/(Desktop)",
+    "unverified": "no-mismatch-highlight-without-evidence",
+    "highlightScope": "differing-attribute-cells-only",
+    "partialMatch": "show-only-differing-or-unverified-properties-of-component",
+    "repeatedItems": "group-same-figma-style; report-shared-fault-once; flag-inconsistent-current-style-as-Chưa-khớp",
+    "shared": "one verified change fixes both devices; report once in Common",
+    "sharedUnverified": "one common row if same observation and verification question evidenced on both devices; no inferred shared cause/fix",
+    "nearTextWidth": "Typography matched + near width + no layout impact: Figma làm tròn (inference: rounding/metrics); no compensating CSS or universal px threshold",
+    "parentRounding": "report rounding at originating child only; omit inherited parent layout width/height discrepancy once explained; verify residual separately",
+    "normalCellBackground": null,
+    "mismatchStatuses": [
+      "Chưa khớp"
+    ]
+  },
+  "renderPolicy": "apply-current-style-at-first-QA-on-authorized-new-or-empty-tab; preserve-live-user-edits-on-existing-tab",
+  "fixCycle": {
+    "roundColumn": "I",
+    "statusColumn": "J",
+    "passStatus": "Khớp",
+    "preserveOriginalErrorRows": true,
+    "preserveUserResolutionNotes": true,
+    "maxRounds": 5,
+    "clearComparisonFillWhenMatched": true,
+    "roundMeaning": "assigned processing round; not proof of completion",
+    "autoAssignFirstQA": {
+      "after": "verified concrete resolution",
+      "eligible": "existing presets/composition or config/settings_data.json local",
+      "value": "Lần 1",
+      "statusUntilVerified": "Chưa khớp"
+    },
+    "skipRequiresUserDecision": true
+  },
+  "processing": {
+    "preferred": "google-sheets-api",
+    "visualVerification": "computer-use-when-available",
+    "unsupportedNativeChipFormatting": "authorized-computer-use-only-for-unsupported-parts",
+    "readBeforeWrite": true,
+    "readBackAfterWrite": true
+  }
+}

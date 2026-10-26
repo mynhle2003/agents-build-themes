@@ -7,6 +7,10 @@ description: "Configure existing Shopify sections and blocks from Figma through 
 
 Build the closest practical match to a Figma section using section and block types already present in the target theme. Configure its existing preset composition and settings, check desktop and mobile rendering, then list the visible gaps. Existing height-option calibration and scoped existing-icon/social workflows are the implementation exceptions below; other gaps remain unimplemented.
 
+## Tab và group Google Chrome
+
+Khi dùng Chrome cho task, bắt buộc áp dụng [vòng đời tab/group dùng chung](../../../../references/browser-session.md). Bản cài phẳng đọc `references/browser-session.md` trong chính thư mục skill này.
+
 ## Truy cập Figma
 
 Khi cần dữ liệu Figma, bắt buộc áp dụng [Figma MCP và cấp quyền tài khoản](../theme-style-guide/references/figma-access.md) trước khi đọc thiết kế/asset. Với bản cài phẳng, đọc `.agents/skills/theme-style-guide/references/figma-access.md`; thiếu dependency thì báo thiếu, không tự chọn cách truy cập khác.
@@ -40,11 +44,11 @@ In this repository, `docs/theme-customization-policy.md` treats preset declarati
 
 ## Workflow
 
-1. **Read the reference.** Identify the target Figma frame and the intended page/section. Capture or inspect both desktop and mobile frames when available, including their viewport dimensions. If using Figma `get_design_context`, first load `figma:figma-design-to-code` as its prerequisite and request a screenshot; use its design evidence for analysis, while keeping this skill's configuration-only boundary.
+1. **Read the reference.** Identify the target Figma frame and the intended page/section. Khi người dùng chưa gửi link, tìm nguồn Figma trong tài liệu khởi tạo của đúng theme đích trước (thường là `docs/theme-init/<theme>.md`): dùng link desktop/mobile và node section đã ghi, hoặc tìm section trong frame trang được ghi ở đó. Không lấy nguồn của theme khác từ tab IDE hay tài liệu kế thừa. Chỉ hỏi lại khi tài liệu thiếu nguồn, có nguồn mâu thuẫn hoặc chưa xác định được theme đích; ghi đường dẫn tài liệu và file/node đã chọn trong bằng chứng bàn giao. Capture or inspect both desktop and mobile frames when available, including their viewport dimensions. If using Figma `get_design_context`, first load `figma:figma-design-to-code` as its prerequisite and request a screenshot; use its design evidence for analysis, while keeping this skill's configuration-only boundary.
 2. **Inspect the theme.** Read the applicable `AGENTS.md` and theme contracts. Inventory existing sections, their schema settings and presets, their allowed blocks, and the target template or section group. Check how each plausible candidate already behaves on mobile. Do not infer unsupported settings from a screenshot.
 3. **Map the design to existing controls.** Make a compact mapping of each visible region to an existing section/block, the settings that can express it, and the desktop/mobile behavior those settings provide. Choose the closest semantically correct composition. Use only controls that exist today.
 4. **Configure the composition.** Set the existing section/block order, preset tree, copy, alignment, layout mode, spacing, colors, and available desktop/mobile options to match the reference as closely as the current theme permits. Apply the pagination guidance and existing height-option exception below when relevant. Keep resource selectors empty unless the user explicitly requested that media work. Prefer a section with native responsive behavior over one whose desktop structure breaks on mobile.
-5. **Review both viewports.** Preview the configured result at the Figma frame sizes when possible. Compare hierarchy, content order, columns, alignment, spacing, line wrapping, and overflow against each frame. If a mobile frame was not supplied, inspect the theme's mobile viewport and state that this was the comparison used. Limit implementation changes to the height and scoped icon exceptions below.
+5. **Verify rendered output on both viewports.** Follow [Kiểm đầu ra với Figma](references/rendered-output.md) before handoff, including every image/card crop and subject position. Compare the actual rendered result at the supplied desktop/mobile frame sizes, not only settings, asset identity or Theme Check. Fix supported configuration mismatches, then recheck the affected viewports. If preview is blocked, mark the affected criteria unverified; do not claim visual completion. If a mobile frame was not supplied, state the mobile viewport used. Preserve the configuration-only boundary and report unsupported rendering gaps.
 6. **Report the result.** Name the changed configuration files and selected section/block types. Summarize desktop and mobile checks. Report any calibrated height scale and its calibration audit (not a customization record). List each material mismatch with the Figma expectation, the current rendering, and the missing existing control or behavior. Mark other custom follow-up as unimplemented. State whether requested media work was completed or references remain unselected.
 
 ## Layout ảnh + text lặp lại có scroll stacking
@@ -122,3 +126,7 @@ Khi section hoặc block (kể cả block lồng nhau) có hotspot, đọc [Hots
 ## Stop and report a gap
 
 Apart from the theme-specific existing height-option exception, scoped existing-icon/social exceptions and explicitly requested media work, if matching the design would require a new section/block, new setting, changed block allow-list, custom logic, markup, CSS, or JavaScript, stop at the configuration boundary. Apply the closest reasonable existing composition if it remains useful; otherwise present the mapping and explain why no existing section is a suitable fit. Include the unmet design details in the gap list and wait for a separate instruction before other custom implementation. Media requests do not authorize an unspecified upload destination or theme push.
+
+## File output/test và commit
+
+Bắt buộc áp dụng [quy tắc loại trừ và dọn file kiểm tra](../../../../references/task-artifacts.md) khi tạo output/test hoặc chuẩn bị commit. Bản cài phẳng đọc `references/task-artifacts.md` trong chính thư mục skill này.

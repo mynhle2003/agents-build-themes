@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fix QA Preset"
+  short_description: "Fix theo ghi chú QA, lưu vòng sửa và QA hồi quy"
+  default_prompt: "Dùng $fix-qa-preset để QA đầu tự gắn Lần 1 khi đã xác minh hướng sửa bằng preset hoặc config/settings_data.json; sửa theo vòng và hướng xử lý được giao, QA hồi quy, giữ lịch sử dòng lỗi, gắn cờ Lần 1–Lần 5/Bỏ qua trong Lần fix và chỉ đổi Trạng thái sang Khớp sau xác minh. Mỗi section của page một file QA ổn định; kết quả mới nhất ở đầu, gộp lịch sử các lượt QA/fix vào cùng file theo contract qa-section/references/qa-report-files.md. Theo contract task-artifacts: loại output/test tạm khỏi commit và dọn delta do task tạo khi hoàn tất, giữ thay đổi có sẵn và hồ sơ được yêu cầu lưu."

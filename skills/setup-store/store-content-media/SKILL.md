@@ -7,6 +7,10 @@ description: "Create or update Shopify store products, variants, collections, bl
 
 Xử lý đúng nhóm dữ liệu người dùng yêu cầu. Audit chỉ đọc; yêu cầu tạo/cập nhật/gắn cho phép làm phần đó trên đích đã xác định. Tạo skill hoặc lập kế hoạch không cho phép ghi dữ liệu store.
 
+## Tab và group Google Chrome
+
+Khi dùng Chrome cho task, bắt buộc áp dụng [vòng đời tab/group dùng chung](../../../references/browser-session.md). Bản cài phẳng đọc `references/browser-session.md` trong chính thư mục skill này.
+
 ## Truy cập Figma
 
 Khi cần dữ liệu Figma, bắt buộc áp dụng [Figma MCP và cấp quyền tài khoản](../../build/preset/theme-style-guide/references/figma-access.md) trước khi đọc thiết kế/asset. Với bản cài phẳng, đọc `.agents/skills/theme-style-guide/references/figma-access.md`; thiếu dependency thì báo thiếu, không tự chọn cách truy cập khác.
@@ -49,3 +53,7 @@ Lập manifest nguồn/đích và tài nguyên có sẵn/cần tạo/thiếu. Ch
 Đọc lại publication, giá/compare-at, options/swatch, variant media, stock, summary, membership và article → blog. Khi được yêu cầu gắn vào preset/template, đọc lại file local; chỉ kiểm tra cấu hình theme đã deploy và preview desktop/mobile ở chế độ đọc khi có đích phù hợp. Báo riêng phần chưa tạo, chưa gắn, pending hoặc chưa kiểm tra.
 
 Lưu receipt/audit theo repo đích: nguồn, store, ID, handle, URL lâu dài và kết quả xác minh; không lưu credential hoặc signed staging URL. Upload content không đồng nghĩa push/publish theme. Sửa media settings/preset/template trong file local chỉ khi được yêu cầu, theo ranh giới trên; giữ composition khác và chạy validation theo AGENTS.md.
+
+## File output/test và commit
+
+Bắt buộc áp dụng [quy tắc loại trừ và dọn file kiểm tra](../../../references/task-artifacts.md) khi tạo output/test hoặc chuẩn bị commit. Bản cài phẳng đọc `references/task-artifacts.md` trong chính thư mục skill này.

@@ -16,6 +16,8 @@ skills/
   update-base/                       Bổ sung skill sau
   qa/
     qa-section/                      QA layout/màu section so với Figma
+    qa-theme-pixel-perfect/           QA toàn theme từng section, xuất Google Sheet
+    fix-qa-preset/                    Fix lần 1 từ bảng QA bằng preset, QA hồi quy
   setup-store/
     store-content-media/             Product, content, ảnh và video
 scripts/
@@ -36,6 +38,8 @@ python3 scripts/install.py /absolute/path/to/theme --group qa
 
 Bỏ --group để cài mọi skill đã hoàn thiện. Script copy từng skill vào `.agents/skills/<skill-name>` của repo đích; giữ thư mục reference/metadata. Nếu đích đã có skill giống hệt thì bỏ qua; nếu khác thì dừng trước khi copy, không ghi đè hoặc xóa. So sánh và sao lưu bản local trước khi quyết định thay thế. Update base hiện chỉ có tài liệu nền, không được cài. Nhóm QA cài riêng bằng `--group qa`; khi đọc Figma cần có dependency `theme-style-guide` từ nhóm build.
 
+[QA Theme Pixel Perfect](skills/qa/qa-theme-pixel-perfect/SKILL.md) dùng lại `qa-section` và `theme-style-guide`: quét đủ/thiếu thành phần và bố cục từng section desktop/mobile, sau đó kiểm nội dung/typo/màu/kích thước theo từng block và grid/control, có ngoại lệ mobile ló item kế tiếp. Báo cáo Google Sheet gọn bằng tiếng Việt, có STT riêng, tên section tiếng Anh và gộp ô thành phần cạnh các dòng tiêu chí, dropdown trạng thái có màu, không có cột link đối chiếu. Skill chỉ QA và xuất báo cáo, không tự sửa theme.
+
 Cách đóng gói/cài đặt theo [tài liệu skill chính thức](https://developers.openai.com/codex/skills). Cấu trúc nhóm trong repo này dùng để bảo trì; script đưa từng skill về thư mục discovery phẳng. Nếu phiên hiện tại chưa thấy skill mới, mở phiên Codex mới tại repo đích.
 
 ## Agent và quy tắc repo
@@ -47,6 +51,12 @@ AGENTS.md cá nhân trong theme-base được giữ local; không sao chép nguy
 ## Truy cập Figma
 
 Các skill dùng chung [quy tắc Figma MCP và cấp quyền tài khoản](skills/build/preset/theme-style-guide/references/figma-access.md): gọi MCP trước, chờ người dùng Accept yêu cầu quyền thật nếu cần; hết quota thì tự dùng CUA để kiểm tra đúng link Figma trên Chrome đang mở, xác minh profile `minhle@beae.com`. Khi cài riêng nhóm `setup-store` hoặc `qa` và cần nguồn Figma, cài thêm `theme-style-guide` (nằm trong nhóm `build`) để có contract này.
+
+## Tab/group Chrome và khôi phục tiến trình
+
+Mọi skill áp dụng [vòng đời tab/group Chrome](references/browser-session.md) khi dùng trình duyệt cho task: ghi checkpoint local, tái sử dụng tab/group sau compact/hết token/reconnect và đóng tab/gỡ group do task tạo khi hoàn tất. Không dọn tab/group có sẵn của người dùng. `scripts/install.py` đóng gói nguồn quy tắc này vào `references/browser-session.md` của từng skill để dùng độc lập khi cài phẳng; chỉ bảo trì bản nguồn, không sửa riêng bản cài. Checkpoint runtime nằm ngoài Git của repo, không lưu vào gói skill.
+
+Mọi skill áp dụng [quy tắc file output/test](references/task-artifacts.md): loại artifact kiểm tra tạm khỏi commit, dọn file/delta do task tạo khi hoàn tất và bảo toàn thay đổi có sẵn cùng hồ sơ được yêu cầu lưu. `scripts/install.py` đóng gói nguồn này vào `references/task-artifacts.md` của từng skill; chỉ bảo trì bản nguồn.
 
 ## Bảo trì
 

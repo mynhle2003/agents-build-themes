@@ -9,6 +9,10 @@ Dùng khi xây mới hoặc sửa implementation trong repo theme có foundation
 
 Đọc và áp dụng [Ưu tiên option trước CSS custom](references/foundation.md#ưu-tiên-option-trước-css-custom) cho build, rebuild, custom, fix và tối ưu trước khi chọn cách sửa.
 
+## Tab và group Google Chrome
+
+Khi dùng Chrome cho task, bắt buộc áp dụng [vòng đời tab/group dùng chung](../../../../references/browser-session.md). Bản cài phẳng đọc `references/browser-session.md` trong chính thư mục skill này.
+
 ## Truy cập Figma
 
 Khi cần dữ liệu Figma, bắt buộc áp dụng [Figma MCP và cấp quyền tài khoản](../../preset/theme-style-guide/references/figma-access.md) trước khi đọc thiết kế/asset. Với bản cài phẳng, đọc `.agents/skills/theme-style-guide/references/figma-access.md`; thiếu dependency thì báo thiếu, không tự chọn cách truy cập khác.
@@ -48,3 +52,7 @@ Reference chứa contract của base nguồn; kiểm tra consumer thực tế tr
 Giữ thay đổi có sẵn. Kiểm tra schema/JSON, `git diff --check`, Theme Check và các trạng thái responsive/editor chịu tác động. Ghi customization theo policy repo nếu thay Liquid/HTML/CSS/JS. Không checkout nhánh, commit, push, publish hoặc mở watcher ngoài phạm vi đã được yêu cầu.
 
 Skill QA độc lập sẽ được xây sau. Báo đúng các bước đã kiểm tra và giới hạn còn lại; kiểm tra build không tự chứng minh đã qua toàn bộ QA.
+
+## File output/test và commit
+
+Bắt buộc áp dụng [quy tắc loại trừ và dọn file kiểm tra](../../../../references/task-artifacts.md) khi tạo output/test hoặc chuẩn bị commit. Bản cài phẳng đọc `references/task-artifacts.md` trong chính thư mục skill này.

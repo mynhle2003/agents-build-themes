@@ -21,3 +21,5 @@ Giữ thay đổi người dùng, inspect diff trước sửa. Phân biệt impl
 Theo branch/delivery policy repo đích. Chạy git diff --check và Shopify Theme Check cho code/schema/config trước delivery. Chỉ commit/push/publish trong phạm vi người dùng yêu cầu hoặc workflow đã cho phép. Không dùng force-push/reset hard để đồng bộ.
 
 Không tự mở rộng quyền ghi store từ yêu cầu build local. Không suy QA hoàn thành từ Theme Check; báo đúng evidence đã kiểm tra.
+
+Khi tạo output/test hoặc chuẩn bị commit, áp dụng [quy tắc file kiểm tra](../../references/task-artifacts.md): loại artifact tạm khỏi commit và dọn delta do task tạo khi hoàn tất, giữ thay đổi có sẵn và hồ sơ được yêu cầu lưu. Khi ghép mẫu, trỏ đến `.agents/skills/<skill-đang-dùng>/references/task-artifacts.md` hoặc vị trí contract thực tế.
